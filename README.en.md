@@ -1,10 +1,10 @@
-# Roboto Origin on RDK X5 / S100
+# Roboto Origin on RDK X5 / S100 / S600
 
-An evidence-driven engineering repository for reproducing the public Roboto Origin stack on RDK X5 and migrating its offline algorithm baseline to RDK S100.
+An evidence-driven engineering repository for reproducing the public Roboto Origin stack on RDK X5, migrating its offline baseline to RDK S100, and extending selected algorithms to RDK S600.
 
 > **Project context: this is a formal D-Robotics company project led by company leadership. The repository maintainer contributes as an intern responsible for the relevant algorithm development, offline deployment, and validation work.**
 
-> Exact status: **the X5 offline baseline and U1–U3 upgrades pass; the S100 D0–D6 single-board offline deployment gate passes; the physical robot, sensors, CAN, motors, navigation, and locomotion have not been validated.**
+> Exact status: **the X5 offline baseline and U1–U3 upgrades pass; the S100 D0–D6 gate passes; a file-only YOLO shadow pipeline passes in order on real X5, S100, and S600 BPUs. The physical robot, sensors, CAN, motors, navigation, and locomotion remain unvalidated.**
 
 [中文](README.md) · [Results](docs/RESULTS.md) · [Reproduction](docs/REPRODUCIBILITY.md) · [Safety](docs/SAFETY.md) · [Roadmap](docs/ROADMAP.md)
 
@@ -29,9 +29,10 @@ An evidence-driven engineering repository for reproducing the public Roboto Orig
 | X5 U3 KISS-ICP | PASS | zero static drift; approximately 0.08 µm endpoint error on a 1.36 m synthetic trajectory |
 | S100 D0–D6 offline deployment | PASS | 9 BPU PASS, 1 explicit CPU fallback, 0 FAIL; 4/4 official vision smoke; 30-minute stress; clean rebuild |
 | S100 U1 Nash-e BPU A/B | PASS | 128 fixtures; mean cosine 0.999807; BPU p50 0.807 ms |
+| YOLO shadow migration: X5→S100→S600 | FUNCTIONAL PASS | X5 native baseline 3/3; S100/S600 YOLO11n 10/10 each; five detections and the same file-only event; strict score parity fails |
 | Physical robot HW0–HW5 | NOT STARTED | No camera, lidar, IMU, CAN, serial, motor, or actuator was connected |
 
-See [docs/RESULTS.md](docs/RESULTS.md) for the complete claim boundaries.
+See [docs/RESULTS.md](docs/RESULTS.md) for the complete claim boundaries and [docs/S600_YOLO11_MIGRATION.md](docs/S600_YOLO11_MIGRATION.md) for the migration record.
 
 ## Quick start
 

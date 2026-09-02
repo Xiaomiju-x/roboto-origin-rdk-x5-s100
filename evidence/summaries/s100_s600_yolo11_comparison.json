@@ -1,0 +1,33 @@
+{
+  "box_iou": {
+    "mean": 0.9801370226003083,
+    "min": 0.9655007229774459
+  },
+  "claims": {
+    "cross_board_numerically_identical": false,
+    "physical_robot_validated": false,
+    "same_fixture": true,
+    "same_model_family": true
+  },
+  "class_sequence": [
+    0,
+    0,
+    0,
+    0,
+    5
+  ],
+  "decision_equal": true,
+  "detection_count": 5,
+  "fixture_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+  "gates": {
+    "max_score_abs_delta": 0.05,
+    "min_box_iou": 0.95
+  },
+  "schema": "roboto_origin.yolo11_s100_s600_comparison.v1",
+  "score_abs_delta": {
+    "max": 0.05157247185707092,
+    "mean": 0.01556716561317444
+  },
+  "status": "S100_S600_YOLO11_SHADOW_FUNCTIONAL_PARITY_PASS",
+  "strict_numeric_status": "S100_S600_YOLO11_STRICT_SCORE_PARITY_FAIL"
+}

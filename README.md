@@ -1,15 +1,16 @@
-# Roboto Origin × RDK X5 / S100
+# Roboto Origin × RDK X5 / S100 / S600
 
 [![CI](https://github.com/Xiaomiju-x/roboto-origin-rdk-x5-s100/actions/workflows/ci.yml/badge.svg)](https://github.com/Xiaomiju-x/roboto-origin-rdk-x5-s100/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![RDK X5](https://img.shields.io/badge/RDK-X5-ff6b35)](https://developer.d-robotics.cc/)
 [![RDK S100](https://img.shields.io/badge/RDK-S100-ff6b35)](https://developer.d-robotics.cc/)
+[![RDK S600](https://img.shields.io/badge/RDK-S600-ff6b35)](https://developer.d-robotics.cc/)
 
-一个面向 [萝博头（Roboto Origin）](https://roboparty.com/roboto_origin/doc) 的、证据驱动的 RDK X5 离线复现与 RDK S100 迁移工程。项目公开可复现的探针、板端脚本、模型/依赖锁、A/B 验收方法和安全门禁；真实机器人接入按 HW0–HW5 分级推进。
+一个面向 [萝博头（Roboto Origin）](https://roboparty.com/roboto_origin/doc) 的、证据驱动的 RDK X5 离线复现、RDK S100 迁移与 RDK S600 算法扩展工程。项目公开可复现的探针、板端脚本、模型/依赖锁、A/B 验收方法和安全门禁；真实机器人接入按 HW0–HW5 分级推进。
 
 > **项目背景：本项目是地瓜机器人（D-Robotics）公司的正式项目，由公司领导牵头推进；本仓库维护者以实习生身份负责其中相关算法研发、离线部署与验证工作。**
 
-> 当前准确状态：**X5 离线基线与 U1–U3 升级已通过；S100 D0–D6 单板离线部署门已通过；真实机器人、传感器、CAN、电机、导航和行走尚未验证。**
+> 当前准确状态：**X5 离线基线与 U1–U3、S100 D0–D6 单板离线部署门已通过；新增 YOLO 视觉 shadow 链已依次在 X5、S100、S600 的真实 BPU 上通过。真实机器人、传感器、CAN、电机、导航和行走尚未验证。**
 
 [English](README.en.md) · [结果总览](docs/RESULTS.md) · [复现指南](docs/REPRODUCIBILITY.md) · [安全边界](docs/SAFETY.md) · [路线图](docs/ROADMAP.md)
 
@@ -35,9 +36,10 @@
 | X5 升级 U3：KISS-ICP | PASS | 静态零漂移；1.36 m 合成运动终点误差约 0.08 µm |
 | S100 D0–D6 单板离线部署 | PASS | 9 个官方模型 BPU PASS、1 个明确 CPU fallback、0 FAIL；4/4 官方视觉 smoke；30 分钟压力；洁净重建 |
 | S100 U1 Nash-e BPU A/B | PASS | 128 组、3 输出；平均 cosine 0.999807；BPU p50 0.807 ms |
+| YOLO 视觉 shadow：X5→S100→S600 | FUNCTIONAL PASS | X5 原生基线 3/3；S100/S600 YOLO11n 各 10/10；同为 5 检测与 `STOP_CANDIDATE`，严格分数一致性未通过 |
 | 真实萝博头硬件 HW0–HW5 | NOT STARTED | 未接相机、雷达、IMU、CAN、串口、电机或执行器 |
 
-完整指标与边界见 [docs/RESULTS.md](docs/RESULTS.md)，脱敏机器摘要见 [evidence/summaries](evidence/summaries)。
+完整指标与边界见 [docs/RESULTS.md](docs/RESULTS.md)，S600 迁移过程见 [docs/S600_YOLO11_MIGRATION.md](docs/S600_YOLO11_MIGRATION.md)，脱敏机器摘要见 [evidence/summaries](evidence/summaries)。
 
 ## 仓库结构
 

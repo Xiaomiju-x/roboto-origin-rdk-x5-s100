@@ -1,0 +1,55 @@
+{
+  "claims": {
+    "camera_used": false,
+    "file_input_file_sink": true,
+    "motion_command_emitted": false,
+    "physical_robot_validated": false,
+    "real_bpu_inference": true,
+    "robot_or_peripheral_output": false
+  },
+  "csv_sha256": "904d1539d906731b156583f7dd7c72e9c20369ba0bf617c6f91fb3e97ed79920",
+  "deterministic": true,
+  "execution_unit": "BPU_DETECT_CPU_TRACK",
+  "fixture": {
+    "redistributed": false,
+    "sha256": "fc5c286b54dd679966883c466926e51688fd4e20fdfbb0244e83bb402dc0545f"
+  },
+  "model": {
+    "family": "YOLO26s",
+    "redistributed": false,
+    "sha256": "239ce8fedb03fc7cc1700ce0b19e25131e35ee53a18aa4caa678d7cd0ca92134"
+  },
+  "platform": "x5",
+  "process_latency_ms": {
+    "max": 3493.565366999974,
+    "min": 3415.57372600073,
+    "p50": 3426.8339750015
+  },
+  "role": "native_robot_baseline_before_s_series_migration",
+  "runs": 3,
+  "schema": "roboto_origin.x5_yolo_shadow.v1",
+  "shadow_decision": {
+    "detection_count": 3,
+    "event": "STOP_CANDIDATE",
+    "frame_id": 0,
+    "motion_command_emitted": false,
+    "platform": "x5",
+    "schema": "roboto_origin.yolo_shadow.v1",
+    "shadow_only": true,
+    "sink": "file_only",
+    "top_zone_hit": {
+      "class_id": 0,
+      "intersection_over_detection": 0.3494501840766889,
+      "score": 0.908448815,
+      "x1": 0.05496325080740741,
+      "x2": 0.3082230179395062,
+      "y1": 0.36239787914166666,
+      "y2": 0.84312399405
+    },
+    "zone": {"x1": 0.2, "x2": 0.8, "y1": 0.45, "y2": 1.0},
+    "zone_hit_count": 2
+  },
+  "status": "X5_YOLO26_BYTETRACK_SHADOW_FILE_PASS",
+  "track_ids": 4,
+  "track_rows": 78
+}

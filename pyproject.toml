@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "roboto-origin-rdk"
 version = "0.1.0"
-description = "Evidence-driven offline validation and RDK X5/S100 migration tools for Roboto Origin"
+description = "Evidence-driven RDK X5/S100/S600 offline migration tools for Roboto Origin"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
 authors = [
   {name = "Xiaomiju-x"}
 ]
-keywords = ["RDK X5", "RDK S100", "robotics", "ROS 2", "edge AI", "BPU"]
+keywords = ["RDK X5", "RDK S100", "RDK S600", "robotics", "ROS 2", "edge AI", "BPU"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "License :: OSI Approved :: Apache Software License",

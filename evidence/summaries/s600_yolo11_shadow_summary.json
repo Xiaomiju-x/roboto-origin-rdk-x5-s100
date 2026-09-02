@@ -1,0 +1,40 @@
+{
+  "claims": {
+    "camera_used": false,
+    "file_input_file_sink": true,
+    "motion_command_emitted": false,
+    "physical_robot_validated": false,
+    "real_bpu_inference": true,
+    "robot_or_peripheral_output": false
+  },
+  "detections": [
+    {"class_id": 0, "score": 0.8880447149276733, "x1": 49.71038818359375, "x2": 241.7401885986328, "y1": 397.9984130859375, "y2": 903.5543823242188},
+    {"class_id": 0, "score": 0.8499089479446411, "x1": 223.2071990966797, "x2": 344.6469421386719, "y1": 406.4868469238281, "y2": 860.9165649414062},
+    {"class_id": 0, "score": 0.8339509963989258, "x1": 670.2391967773438, "x2": 810.0, "y1": 394.7227783203125, "y2": 880.3578491210938},
+    {"class_id": 0, "score": 0.502838134765625, "x1": 0.6592569351196289, "x2": 60.76499938964844, "y1": 562.9588623046875, "y2": 872.1732177734375},
+    {"class_id": 5, "score": 0.9178933501243591, "x1": 6.612911224365234, "x2": 798.862548828125, "y1": 228.6833038330078, "y2": 737.2957763671875}
+  ],
+  "deterministic": true,
+  "execution_unit": "BPU_DETECT_CPU_POSTPROCESS",
+  "fixture": {"redistributed": false, "sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63"},
+  "latency_ms": {"max": 1.7669569933786988, "min": 1.5522550093010068, "p50": 1.5939050063025206},
+  "model": {"name": "yolo11n_detect_nashp_640x640_nv12_beta", "redistributed": false, "sha256": "45b554d97521524ffbec6016ece8a4e87f99b100a3624724e9ed2ce7747ff5f8"},
+  "platform": "s600",
+  "raw_output_sha256": "d79f53c7794d313fd2184dc9071e94f29f789dda4830429e31403fae8a2ea76b",
+  "schema": "roboto_origin.s_series_yolo11_shadow.v1",
+  "shadow_decision": {
+    "detection_count": 5,
+    "event": "STOP_CANDIDATE",
+    "frame_id": 0,
+    "motion_command_emitted": false,
+    "platform": "s600",
+    "schema": "roboto_origin.yolo_shadow.v1",
+    "shadow_only": true,
+    "sink": "file_only",
+    "top_zone_hit": {"class_id": 5, "intersection_over_detection": 0.3030905552460074, "score": 0.9178933501243591, "x1": 0.008164087931315104, "x2": 0.9862500602816358, "y1": 0.2117437998453776, "y2": 0.6826812744140625},
+    "zone": {"x1": 0.2, "x2": 0.8, "y1": 0.45, "y2": 1.0},
+    "zone_hit_count": 3
+  },
+  "status": "S600_YOLO11_BPU_SHADOW_FILE_PASS",
+  "timed_runs": 10
+}

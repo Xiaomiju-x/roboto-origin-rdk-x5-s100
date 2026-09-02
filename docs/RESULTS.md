@@ -1,6 +1,6 @@
 # 验证结果与声明边界
 
-更新时间：2026-08-29
+更新时间：2026-09-02
 
 本页只汇总已经由机器证据关闭的门。下载、构建、主机运行或单次 smoke 均不会自动升级为板端 PASS。
 
@@ -11,6 +11,7 @@
 | X5 官方 O0–O6 | PASS | 来源/模型合同、CPU/CUDA/X5 ONNX、合成深度、PCD→PGM、Nav2 规划、FAST-LIO2 回放、有限 Isaac 训练/play/export | 真实传感器、执行器、整机闭环与官方大规模训练收敛 |
 | X5 U1–U3 | PASS | 时序 BEV、可信动作守卫、KISS-ICP 合成 A/B | 真实点云、真实观测分布、控制器接入 |
 | S100 D0–D6 | PASS | 只读盘点、隔离工程、CPU 复现、Nash-e BPU、官方视觉 smoke、故障注入、30 分钟压力、洁净重建 | 机器人、相机、雷达、IMU、CAN、串口、电机、导航和行走 |
+| 三板 YOLO shadow 迁移 | FUNCTIONAL PASS | X5 原生视觉基线；S100/S600 YOLO11n 真 BPU；统一 file-only guard | 严格分数等价、真实相机、真实机器人与控制闭环 |
 | HW0–HW5 | NOT STARTED | 无 | 全部真实机器人阶段 |
 
 ## X5 官方离线基线
@@ -63,9 +64,19 @@
 
 脱敏、机器可读摘要位于 `evidence/summaries/`。公开摘要中的网络端点和本机路径已经移除；完整原始证据只保留在受控的本地交付面。
 
+## X5 → S100 → S600 YOLO shadow 增量
+
+- X5 先用已验证的 YOLO26s+ByteTrack 重跑原生基线：3/3 CSV 字节一致，78 条轨迹、4 个 ID，BPU 退出空闲。
+- X5 板载 modified YOLO11 与旧跟踪器组合产生零面积框，几何门失败并停止使用；没有伪装成 PASS。
+- S100/S600 使用相同 YOLO11n、相同图像、相同后处理与 guard；各完成 10 次确定性真实 BPU 推理，均得到 4 个 person、1 个 bus 和 file-only `STOP_CANDIDATE`。
+- S100 BPU P50 3.402 ms；S600 BPU P50 1.594 ms。两者最差框 IoU 0.9655，功能事件一致。
+- 严格分数差冻结门为 0.05，实测最大差 0.05157，因此 `S100_S600_YOLO11_STRICT_SCORE_PARITY_FAIL`；只关闭功能/安全事件迁移门。
+- 全程未使用相机或机器人外设，未发送运动命令。详见 [S600_YOLO11_MIGRATION.md](S600_YOLO11_MIGRATION.md)。
+
 ## 不得扩大解释
 
 - `S100_OFFLINE_GATE_COMPLETE=true` 仅表示单主板、无外设、离线算法部署就绪。
 - 任何 HBM/BIN 的生成都不等于真实 BPU 数值 PASS；任何 BPU PASS 也不等于机器人控制 PASS。
 - 现有 `cmd_vel`、动作或策略输出只写入离线 fixture/shadow/file sink，不连接 CAN、串口、电机或控制器。
 - S100 的算力提升不能替代 X5 原生机器人硬件基线；真实硬件必须先在 X5 分级关闭门，再开始 S100 适配。
+- S600 的离线算法 PASS 只增加算法候选，不授权跳过 X5/S100 的真实机器人顺序或直接接管控制。

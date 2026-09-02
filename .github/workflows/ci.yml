@@ -32,7 +32,12 @@ jobs:
         run: python -m compileall -q src probes scripts tests
 
       - name: Ruff
-        run: ruff check src tests scripts/ci
+        run: >-
+          ruff check src tests scripts/ci
+          probes/yolo_shadow_adapter.py
+          scripts/board/run_x5_yolo_shadow.py
+          scripts/board/run_s_series_yolo11_shadow.py
+          scripts/host/compare_yolo_shadow_results.py
 
       - name: Shell syntax
         run: find scripts -type f -name '*.sh' -print0 | xargs -0 -r -n1 bash -n

@@ -1,0 +1,39 @@
+schema: roboto_origin.yolo_shadow_migration.v1
+date: 2026-09-02
+purpose: cross-board offline visual obstacle candidate for Roboto Origin
+safety_contract:
+  input: local_file_only
+  output: json_file_only
+  event_values: [CLEAR, STOP_CANDIDATE]
+  camera_used: false
+  motion_command_emitted: false
+  robot_or_peripheral_output: false
+platforms:
+  x5:
+    role: native_robot_baseline
+    detector: YOLO26s
+    tracker: ByteTrack
+    execution: Bayes-e BPU detection plus CPU tracking
+    model_sha256: 239ce8fedb03fc7cc1700ce0b19e25131e35ee53a18aa4caa678d7cd0ca92134
+    result: X5_YOLO26_BYTETRACK_SHADOW_FILE_PASS
+  s100:
+    role: first S-series migration target
+    detector: YOLO11n
+    execution: Nash-e BPU detection plus CPU postprocess
+    model_sha256: 50f59e31473a3f496060f14ad947231fbebe04ddc9b1cbf0efa0c499253907b4
+    result: S100_YOLO11_BPU_SHADOW_FILE_PASS
+  s600:
+    role: algorithm extension target
+    detector: YOLO11n
+    execution: Nash-p BPU detection plus CPU postprocess
+    model_sha256: 45b554d97521524ffbec6016ece8a4e87f99b100a3624724e9ed2ce7747ff5f8
+    result: S600_YOLO11_BPU_SHADOW_FILE_PASS
+redistribution:
+  source_code: Apache-2.0
+  model_binaries: excluded
+  evaluation_fixture: excluded
+comparison:
+  functional_status: S100_S600_YOLO11_SHADOW_FUNCTIONAL_PARITY_PASS
+  strict_numeric_status: S100_S600_YOLO11_STRICT_SCORE_PARITY_FAIL
+  minimum_box_iou: 0.9655007229774459
+  maximum_score_absolute_delta: 0.05157247185707092

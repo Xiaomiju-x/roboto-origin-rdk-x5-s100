@@ -9,6 +9,7 @@
 - [公共发布策略](PUBLIC_RELEASE.md)
 - [当前状态](../delivery/STATUS.md)
 - [S100 离线交付](S100_OFFLINE_DELIVERY.md)
+- [YOLO 视觉 shadow 的 X5→S100→S600 迁移](S600_YOLO11_MIGRATION.md)
 
 ## 阶段与设计记录
 

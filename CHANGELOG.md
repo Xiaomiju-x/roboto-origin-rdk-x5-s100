@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### Added
+
+- X5→S100→S600 YOLO 视觉 shadow 迁移：三板真实 BPU、统一归一化检测合同与 file-only `STOP_CANDIDATE`。
+- S100/S600 YOLO11n 共用 runner、X5 原生基线 runner、跨板比较工具和脱敏机器摘要。
+
+### Known limitations
+
+- S100/S600 功能事件一致，但严格分数差门 0.05 未通过（最大差 0.05157）。
+- X5 modified YOLO11 与旧跟踪器的零面积框路线保留为失败，不作为基线。
+
 ### Planned
 
 - HW0 无动力物料、电气、线束、急停与身份核对。
