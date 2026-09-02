@@ -1,6 +1,13 @@
 Roboto Origin × RDK X5 / S100 engineering validation toolkit
 Copyright 2026 Xiaomiju-x
 
+Project origin and role:
+This work is part of a formal D-Robotics company project led by company
+leadership. Xiaomiju-x participated as an intern responsible for the relevant
+algorithm development, offline deployment, and validation work. This public
+repository contains the corresponding project-owned implementations and
+reproducibility materials prepared for open-source release.
+
 This repository contains project-owned orchestration, validation, configuration,
 documentation, and small algorithm modules. It does not vendor the referenced
 upstream repositories, model weights, datasets, RDK toolchains, or board binaries.
@@ -13,5 +20,6 @@ D-Robotics, KISS-ICP, Isaac Lab, Open3D, ROS 2/Nav2, Depth Anything V2, ASAP,
 WBC-AGILE, and their transitive dependencies.
 
 Roboto Origin, Roboparty, RDK, D-Robotics, and other product or project names may
-be trademarks of their respective owners. This repository is not an official
-distribution of Roboparty or D-Robotics.
+be trademarks of their respective owners. Statements about validation scope in
+this repository must not be extended to unverified hardware capabilities or
+production-readiness claims.

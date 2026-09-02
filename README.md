@@ -7,6 +7,8 @@
 
 一个面向 [萝博头（Roboto Origin）](https://roboparty.com/roboto_origin/doc) 的、证据驱动的 RDK X5 离线复现与 RDK S100 迁移工程。项目公开可复现的探针、板端脚本、模型/依赖锁、A/B 验收方法和安全门禁；真实机器人接入按 HW0–HW5 分级推进。
 
+> **项目背景：本项目是地瓜机器人（D-Robotics）公司的正式项目，由公司领导牵头推进；本仓库维护者以实习生身份负责其中相关算法研发、离线部署与验证工作。**
+
 > 当前准确状态：**X5 离线基线与 U1–U3 升级已通过；S100 D0–D6 单板离线部署门已通过；真实机器人、传感器、CAN、电机、导航和行走尚未验证。**
 
 [English](README.en.md) · [结果总览](docs/RESULTS.md) · [复现指南](docs/REPRODUCIBILITY.md) · [安全边界](docs/SAFETY.md) · [路线图](docs/ROADMAP.md)
@@ -125,4 +127,4 @@ HW0/HW1 未通过不得给执行器上动力；首次带动力动作、扩大动
 
 项目自有代码以 [Apache License 2.0](LICENSE) 发布。第三方项目、模型、数据与生成物仍受各自许可证约束，详见 [NOTICE](NOTICE) 和 `inventory/`。
 
-本项目是个人维护的工程验证项目，不是 Roboparty 或 D-Robotics 的官方发行版。Roboto Origin、RDK、上游仓库和产品名称的权利归各自权利人所有。
+本仓库用于公开上述公司正式项目中由维护者负责的相关算法实现与可复现验证材料；它不将尚未通过的硬件能力或量产状态表述为公司承诺。Roboto Origin、RDK、上游仓库和产品名称的权利归各自权利人所有。

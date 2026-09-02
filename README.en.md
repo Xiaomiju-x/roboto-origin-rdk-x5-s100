@@ -2,6 +2,8 @@
 
 An evidence-driven engineering repository for reproducing the public Roboto Origin stack on RDK X5 and migrating its offline algorithm baseline to RDK S100.
 
+> **Project context: this is a formal D-Robotics company project led by company leadership. The repository maintainer contributes as an intern responsible for the relevant algorithm development, offline deployment, and validation work.**
+
 > Exact status: **the X5 offline baseline and U1–U3 upgrades pass; the S100 D0–D6 single-board offline deployment gate passes; the physical robot, sensors, CAN, motors, navigation, and locomotion have not been validated.**
 
 [中文](README.md) · [Results](docs/RESULTS.md) · [Reproduction](docs/REPRODUCIBILITY.md) · [Safety](docs/SAFETY.md) · [Roadmap](docs/ROADMAP.md)
@@ -48,4 +50,4 @@ Board scripts are stage-specific engineering tools, not a one-command robot inst
 
 Project-owned code is released under the [Apache License 2.0](LICENSE). Third-party repositories, models, datasets, binaries, and generated artifacts retain their own licenses; see [NOTICE](NOTICE) and `inventory/`.
 
-This is a personally maintained engineering validation project, not an official Roboparty or D-Robotics distribution.
+This repository publishes the relevant algorithm implementations and reproducible validation materials maintained within that formal company project. It does not present unvalidated hardware capabilities or production readiness as company commitments.
