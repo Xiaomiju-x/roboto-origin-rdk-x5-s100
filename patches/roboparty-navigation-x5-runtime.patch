@@ -1,0 +1,10 @@
+diff --git a/robots_localization_ros2/src/robots_localization_node.cpp b/robots_localization_ros2/src/robots_localization_node.cpp
+--- a/robots_localization_ros2/src/robots_localization_node.cpp
++++ b/robots_localization_ros2/src/robots_localization_node.cpp
+@@ -1460,7 +1460,6 @@ void RobotsLocalizationNode::mainProcessThread() {
+     fout_mocap.close();
+     fout_fusion.close();
+     fout_uwb_calib.close();
+-    ikdtree.~KD_TREE();
+     return;
+ }

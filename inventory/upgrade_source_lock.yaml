@@ -1,0 +1,44 @@
+schema_version: 1
+observed_at: "2026-08-29"
+
+xrd_reference:
+  root: "external read-only open-source snapshot; not distributed here"
+  commit: 6c150dc3ea964b0617ede87f5b76a928876c693b
+  commit_date: "2026-08-22T15:19:44+08:00"
+  license: Apache-2.0 at repository root; individual asset boundaries follow NOTICE
+  access: read_only
+  exclusions:
+    - credentials, authentication material, secrets, private data, models, and logs
+    - original services, firmware, maps, weights, and runtime configuration
+
+online_sources:
+  kiss_icp:
+    url: https://github.com/PRBonn/kiss-icp.git
+    ref: v1.3.0
+    commit: b16835283aee62f7d5e2bdf6c1c3bb2930de74ff
+    license: MIT
+    local_checkout: upstream/kiss-icp
+    selected: true
+  wbc_agile:
+    url: https://github.com/nvidia-isaac/WBC-AGILE.git
+    ref: main
+    observed_commit: 408a27cdfc204cdeb5b342f2b737e770ebda63ca
+    license: Apache-2.0 and BSD-3-Clause
+    selected: false
+  asap:
+    url: https://github.com/LeCAR-Lab/ASAP.git
+    ref: main
+    observed_commit: df5320cc47dd8cad97961bdfabfe402dd62ad999
+    license: MIT
+    selected: false
+  depth_anything_v2:
+    url: https://github.com/DepthAnything/Depth-Anything-V2.git
+    ref: main
+    observed_commit: a561b849ebae10a6f5ef49e26c83cbbcd36c71bf
+    license: Apache-2.0 for Small; CC-BY-NC-4.0 for Base/Large/Giant weights
+    selected: false
+
+rules:
+  - Upstream checkouts are immutable references and must remain clean.
+  - Project-owned implementations live outside upstream and do not copy XRD weights or services.
+  - Online observed main commits are audit snapshots, not automatic dependency updates.

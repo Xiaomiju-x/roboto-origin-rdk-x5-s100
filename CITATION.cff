@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If this engineering toolkit helps your work, please cite the repository."
+title: "Roboto Origin on RDK X5 and S100: Evidence-Driven Offline Validation Toolkit"
+type: software
+authors:
+  - name: Xiaomiju-x
+version: 0.1.0
+date-released: 2026-09-02
+license: Apache-2.0
+repository-code: "https://github.com/Xiaomiju-x/roboto-origin-rdk-x5-s100"
+url: "https://github.com/Xiaomiju-x/roboto-origin-rdk-x5-s100"
+keywords:
+  - RDK X5
+  - RDK S100
+  - Roboto Origin
+  - ROS 2
+  - edge AI
+  - robotics validation

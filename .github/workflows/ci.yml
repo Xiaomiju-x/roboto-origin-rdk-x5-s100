@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install validation dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Unit tests
+        run: python -m pytest
+
+      - name: Python syntax
+        run: python -m compileall -q src probes scripts tests
+
+      - name: Ruff
+        run: ruff check src tests scripts/ci
+
+      - name: Shell syntax
+        run: find scripts -type f -name '*.sh' -print0 | xargs -0 -r -n1 bash -n
+
+      - name: PowerShell syntax
+        shell: pwsh
+        run: |
+          $errors = @()
+          Get-ChildItem scripts -Recurse -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $parseErrors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$parseErrors) | Out-Null
+            if ($parseErrors) { $errors += $parseErrors }
+          }
+          if ($errors) { $errors | Format-List; exit 1 }
+
+      - name: Public release audit
+        run: python scripts/ci/public_release_audit.py

@@ -1,0 +1,98 @@
+schema_version: 1
+locked_at: "2026-08-29T08:11:50+08:00"
+scope: >-
+  Isolated Windows laptop environment used for official RoboParty one-environment
+  Isaac training, checkpoint, bounded headless play/export, and artifact checks.
+
+host:
+  os: "Windows 11 Home 25H2"
+  python: "3.11.15"
+  python_path: "<repo>/h/python"
+  environment_path: "<repo>/h/env"
+  gpu: "NVIDIA GeForce RTX 4050 Laptop GPU"
+  gpu_memory_mib: 6141
+  nvidia_driver: "610.62"
+
+source_pins:
+  roboparty_train:
+    commit: "92008a6317d6d0efe8b58abc2fb3c630c75992c0"
+    committed_at: "2026-07-26T21:25:45+08:00"
+    clean: true
+  robolab:
+    commit: "6b1c3d9988497c8961dcba77892de32edc1770e1"
+    clean: true
+  rsl_rl:
+    commit: "6986d4d1b9fbab96fb61d51f07de419bc95432f1"
+    package_version: "3.3.0"
+    clean: true
+  isaac_lab:
+    commit: "b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8"
+    committed_at: "2026-07-24T09:40:43-07:00"
+    clean: true
+    selection: >-
+      Exact last main-branch commit preceding the pinned RoboParty aggregate
+      commit. This replaces the mutable main branch while matching RoboParty's
+      declared Isaac Lab main requirement. Its official pip guide targets Isaac
+      Sim 5.1.0 and Python 3.11, and it contains handle_deprecated_rsl_rl_cfg.
+
+critical_packages:
+  isaacsim: "5.1.0.0"
+  isaaclab: "0.54.4"
+  isaaclab_rl: "0.5.2"
+  isaaclab_tasks: "0.11.16"
+  torch: "2.7.0+cu128"
+  torchvision: "0.22.0+cu128"
+  tensordict: "0.11.0"
+  flatdict: "4.1.0"
+  onnx: "1.18.0"
+  onnxruntime_gpu: "1.26.0"
+  mujoco: "3.3.3"
+  numpy: "1.26.0"
+  pyyaml: "6.0.2"
+  robolab: "1.0.0"
+
+local_wheel_locks:
+  tensordict:
+    filename: "tensordict-0.11.0-cp311-cp311-win_amd64.whl"
+    sha256: "2cdf014575e3961c54c156a7b01e50da55e59472ebc74246b55b447887c92d41"
+    reason: >-
+      TensorDict 0.14.0 caused a Windows access violation after Isaac Kit
+      startup. The isolated environment uses the upstream-recommended 0.11.0
+      rollback; RoboParty rsl_rl requires only tensordict >=0.7.0.
+    upstream_reference: "https://github.com/isaac-sim/IsaacLab/discussions/5652"
+  flatdict:
+    filename: "flatdict-4.1.0-py3-none-any.whl"
+    sha256: "24c3ff816733e472f91071031bd286c3826ecf2d646d5020af49fe10b20a5677"
+    reason: "Minimum version declared by the selected Isaac Lab commit."
+
+known_upstream_metadata_conflict:
+  status: accepted_non_training_path_conflict
+  details: >-
+    Isaac Lab 0.54.4 pins starlette 0.49.1 while Isaac Sim 5.1.0's
+    fastapi 0.115.7 metadata declares starlette >=0.40.0,<0.46.0. The official
+    Isaac training, play/export, ONNX, and TorchScript acceptance paths all
+    passed without importing or starting the FastAPI web service. Neither
+    incompatible pin was silently overridden.
+
+legal_gate:
+  user_acceptance_recorded_in_task: true
+  accepted_at_date: "2026-08-29"
+  project_gate: "ROBOTO_NVIDIA_EULA_ACCEPTED=YES"
+  child_only_vendor_gate: "OMNI_KIT_ACCEPT_EULA=YES"
+  persisted_to_system_environment: false
+
+acceptance:
+  aggregate: "evidence/host/isaac/20260829T075941+0800/aggregate.json"
+  aggregate_status: PASS
+  complete_tasks: 8
+  artifact_verification: "evidence/host/isaac/20260829T075941+0800/artifact_verification.json"
+  artifact_verification_status: PASS
+  onnx_backend_probe: "evidence/host/isaac/20260829T075941+0800/export_backend_probe.json"
+  onnx_backend_probe_status: PASS
+  onnx_models_checked: 9
+
+safety:
+  robot_or_peripherals_accessed: false
+  ros_or_can_accessed_by_host_training: false
+  official_source_modified: false
+  system_python_modified: false

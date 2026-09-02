@@ -1,0 +1,77 @@
+schema_version: 1
+updated_at: "2026-08-28"
+status: PARTIAL_BOARD_READ_ONLY
+note: "Board-side evidence captured on 2026-08-28. Physical robot, wiring, labels, support and emergency stop remain unverified."
+
+robot:
+  model: "Roboto Origin prototype (user description)"
+  serial_number: unknown
+  mechanical_revision: unknown
+  safely_supported: unknown
+  emergency_stop_present: unknown
+  software_stop_verified: false
+
+compute:
+  x5:
+    power_state: on_confirmed_by_user_2026_08_28
+    role: primary_baseline
+    system_version: "Ubuntu 22.04.5 LTS; Linux 6.1.83; arm64"
+    hostname: redacted_public_snapshot
+    board_identity: "x5-rdk board_id 302 revision 1_B; 8GB Micron LPDDR4 4266"
+    observed_network_endpoints: redacted_public_snapshot
+    display: "HDMI-1 primary 1024x600@59.82Hz; switched from DSI on 2026-08-28"
+    storage: "57G root, 32G available at capture"
+    ros: "ROS 2 Humble and TROS Humble installed; project env uses ROS_DOMAIN_ID=42"
+  s100:
+    power_state: on_confirmed_by_user_2026_08_29
+    role: post_x5_extension
+    inventory_state: read_only_d0_pass_full_execution_awaiting_approval
+    system_version: "RDK OS 4.0.5-Beta; Ubuntu 22.04.5 LTS; Linux 6.1.158-rt58; arm64"
+    hostname: redacted_public_snapshot
+    board_identity: "S100_RDK_V1P0 board_id 0x6A86; S100E/Nash-e 80 TOPS; 12GB LPDDR5 official, 9.3GiB Linux-visible"
+    cpu: "6x Cortex-A78AE, 1125-1500MHz"
+    bpu_runtime: "hobot-dnn 4.0.5; hbm-runtime 0.1.0.post1; UCP/hrt_model_exec 3.13.6"
+    ros: "ROS 2 Humble at /opt/ros/humble; 185 packages after source; project env uses ROS_DOMAIN_ID=42"
+    storage: "59.6G eMMC; 45G root; 16G available at capture"
+    display: "HDMI-1 primary 1280x720@60Hz"
+    vnc: "x11vnc enabled/active; endpoints redacted in public snapshot"
+    observed_network_endpoints: redacted_public_snapshot
+    interfaces: "No external USB device, serial node, Linux CAN interface, or /dev/F407 at capture"
+    benchmark_precondition: "Not idle at D0: loadavg 1m 9.75, gnome-shell ~245% CPU; recheck without terminating user processes"
+
+power:
+  battery_model: unknown
+  nominal_voltage_v: "48 (official generic description; verify actual label)"
+  capacity_ah: "15 (official generic description; verify actual label)"
+  polarity_verified: false
+  fuse_verified: false
+  grounding_verified: false
+
+actuation:
+  expected_joint_count: "23 (official baseline; verify prototype)"
+  motor_models: unknown
+  motor_firmware_versions: unknown
+  node_ids: unknown
+  can_protocol: unknown
+  can_bitrate: unknown
+  can_bus_mapping: unknown
+  termination_resistance: unknown
+  zero_calibration_state: unknown
+
+interfaces:
+  three_in_one_board_revision: unknown
+  usb_to_can_identity: "not enumerated; only Genesys USB 2.0/3.1 hubs observed"
+  can_h_l_gnd_verified: false
+  x5_can_interfaces: "can0 only; m_can on spi5.0, clock 20MHz, DOWN/STOPPED, RX=0 TX=0"
+  imu_model: unknown
+  imu_device: unknown
+  depth_camera: unknown
+  lidar: unknown
+
+evidence_required:
+  - "Full robot and support/rig photos"
+  - "Battery/power supply labels and connector polarity"
+  - "Motor labels, node ID and bus mapping"
+  - "Three-in-one board revision, wiring and termination"
+  - "X5 screen output: hostname -I and system version"
+  - "Emergency-stop and power-cut procedure"

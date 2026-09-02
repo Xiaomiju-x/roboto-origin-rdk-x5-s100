@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-08-29T19:53:35.2257315+08:00",
+  "scope": "S100 single-board offline algorithm deployment readiness; no robot or external peripheral validation",
+  "board": {
+    "product": "RDK S100",
+    "soc": "S100",
+    "bpu": "Nash-e",
+    "int8_tops": 80,
+    "rdk_os": "4.0.5-Beta",
+    "ucp_runtime": "3.13.6",
+    "ros_domain_id": 42,
+    "network_endpoints": "redacted_in_public_summary"
+  },
+  "gates": {
+    "D0": true,
+    "D1": true,
+    "D2": true,
+    "D3": true,
+    "D4": true,
+    "D5": true,
+    "D6": true
+  },
+  "s100_offline_gate_complete": true,
+  "delivery_complete": true,
+  "evidence": {
+    "d0": {
+      "path": "evidence/s100/d0_readonly_snapshot_20260829.json",
+      "sha256": "9e0b36153cd44b18cfd0a44d1a1165269d3de4582cd5735cae0119fcc8e8204d"
+    },
+    "d1": {
+      "path": "evidence/s100/board_d0_d2/evidence/d1_bootstrap_receipt.json",
+      "sha256": "df0307ba1f1c53abcea84b7f013663d57ff7bc58158c6a4a3743cc244eabc137"
+    },
+    "d2": {
+      "path": "evidence/s100/board_d0_d2/evidence/d2_summary.json",
+      "sha256": "a20071e3f88cfaa2e165d3e5842b7d4322287925e86651672889ead4fbdbba28"
+    },
+    "d3": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/d3_bpu_ab/2026-08-29T17-13-41+08-00/result.json",
+      "sha256": "aaddfbde4a670c6a022834615c83ab48d37f8bd9bf0da58311cc6143972387b4"
+    },
+    "d4_official": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/d4_official_smoke/2026-08-29T18-51-14+08-00/result.json",
+      "sha256": "4bc30fbf24d988f5022ea256c2351ec1e09dab8d2fbc1230cee043a75fc8cf73"
+    },
+    "d4_frontier": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/d4_frontier_audit/2026-08-29T19-03-26+08-00/result.json",
+      "sha256": "6069e9c2110ae5106f42d9241f54dd028f967b6e8a88047190afc3e7d79dd82b"
+    },
+    "d5_nav": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/d5_nav2_multigoal/2026-08-29T19-09-13-08-00/result.json",
+      "sha256": "7d611a664403d6d608bd6065b9e488e4a08c0d335c0bdd93f3240e7ef84e8e27"
+    },
+    "d5_chain": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/d5_chain_stress/2026-08-29T19-14-11+08-00/result.json",
+      "sha256": "1c37cf0f74fa5cd012d0bc424fa0fd5e9b91e9c310e946cb2ce9206de6fed1e4"
+    },
+    "u1_bpu": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/u1_bpu_ab/2026-08-29T19-50-15+08-00/result.json",
+      "sha256": "88ca165d3ed31e38269bc49e90c8779062de057f84c2b210ff70776aca247e1f"
+    },
+    "u1_manifest": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/u1_bpu_bundle/deployment_manifest.json",
+      "sha256": "a523fe4dc60e5803eda4fdc4134af65bfe8ecd0946442c9cd476065e60080615"
+    },
+    "d6": {
+      "path": "evidence/s100/board_final/extracted_20260829T1952/evidence/d6_clean_rebuild/2026-08-29T19-46-49+08-00/result.json",
+      "sha256": "094ce6ed8b3b128c5c4fda4bc7fae05f9f9471a6d0e0e723389fceb8a8a0948e"
+    }
+  },
+  "highlights": {
+    "d3": {
+      "total": 10,
+      "pass": 9,
+      "cpu_fallback": 1,
+      "fail": 0,
+      "required_bpu_models": [
+        "encoder",
+        "policy"
+      ],
+      "required_bpu_models_pass": true
+    },
+    "u1_bpu": {
+      "hbm_sha256": "5a0bb873d657fb81ec779fe908ac832de50d7da2c41a56e82fc583b96639f013",
+      "test_count": 128,
+      "cosine_global_mean": 0.9998069839537895,
+      "cosine_global_min": 0.9969569872868342,
+      "cpu_p50_ms": 4.253374,
+      "bpu_p50_ms": 0.806851,
+      "bpu_p99_ms": 12.035186409999993,
+      "same_x5_fixture": true
+    },
+    "d4_official": {
+      "total": 4,
+      "pass": 4,
+      "fail": 0
+    },
+    "d5_nav": {
+      "passed": 20,
+      "requested": 20,
+      "total_path_length_m": 170.00238719109626,
+      "total_path_poses": 6764
+    },
+    "d5_chain": {
+      "policy_steps": 10000,
+      "guard_steps": 40000,
+      "fault_count": 8,
+      "stress_elapsed_seconds": 1800.0006191020002,
+      "stress_invocations": 1633873,
+      "stress_errors": 0,
+      "bpu_temperature_c_max": 52.62
+    },
+    "d6": {
+      "d3": {
+        "returncode": 0,
+        "result_file": "/home/sunrise/workspaces/new_project/roboto_origin_s100/evidence/d6_clean_rebuild/2026-08-29T19-46-49+08-00/d3_replay.json",
+        "result_sha256": "ffe9cc08ce29ff8003c23ae4ee0e0255547f7e73b5cbe6d79dbcc0505e6f6d0a",
+        "summary": {
+          "total": 10,
+          "pass": 9,
+          "cpu_fallback": 1,
+          "fail": 0,
+          "required_bpu_models": [
+            "encoder",
+            "policy"
+          ],
+          "required_bpu_models_pass": true
+        },
+        "result": "PASS"
+      },
+      "d4": {
+        "returncode": 0,
+        "result_file": "/home/sunrise/workspaces/new_project/roboto_origin_s100/evidence/d6_clean_rebuild/2026-08-29T19-46-49+08-00/d4_replay.json",
+        "result_sha256": "275307eb4ba3c936ba9d6a189cfe448d1d7dda34df12dab74e9a6d85f27e7c6b",
+        "summary": {
+          "total": 4,
+          "pass": 4,
+          "fail": 0
+        },
+        "result": "PASS"
+      }
+    }
+  },
+  "deployment_decisions": {
+    "required_bpu": [
+      "encoder",
+      "policy"
+    ],
+    "upgrade_bpu": [
+      "u1_temporal"
+    ],
+    "cpu_fallback": [
+      "policy_attn_enc"
+    ],
+    "d4_deployed": [
+      "YOLO26 detection",
+      "ByteTrack",
+      "Depth Anything V2",
+      "PointNet part segmentation"
+    ],
+    "optional_frontier": "Commit-locked and audited; blocked/reference candidates are not reported as deployed."
+  },
+  "limitations": [
+    "No camera, lidar, IMU, CAN, serial, motor, actuator, or robot was connected or accessed.",
+    "No physical navigation, localization, locomotion, manipulation, or emergency-stop behavior is validated.",
+    "The D5 policy-to-guard adapter uses tanh only for a normalized file-sink rehearsal; it is not a Roboto actuator mapping.",
+    "Robot URDF/actuator identity, joint signs, zero offsets, limits, observation/action ordering, and control transport remain future hardware gates.",
+    "Thermal and timing results describe this single-board no-peripheral setup only."
+  ]
+}

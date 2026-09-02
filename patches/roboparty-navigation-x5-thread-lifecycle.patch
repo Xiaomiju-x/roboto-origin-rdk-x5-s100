@@ -1,0 +1,52 @@
+diff --git a/robots_localization_ros2/src/robots_localization_node.h b/robots_localization_ros2/src/robots_localization_node.h
+--- a/robots_localization_ros2/src/robots_localization_node.h
++++ b/robots_localization_ros2/src/robots_localization_node.h
+@@ -373,7 +373,6 @@ class RobotsLocalizationNode : public rclcpp::Node {
+             });
+         }
+
+-        signal(SIGINT, SigHandle);
+         if (p_lidar->lidar_type == AVIA) {
+             sub_pcl_livox = this->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+                 lid_topic, 1, std::bind(&RobotsLocalizationNode::livox_pcl_cbk, this, std::placeholders::_1));
+@@ -405,21 +404,30 @@ class RobotsLocalizationNode : public rclcpp::Node {
+         sub_initial_pose = this->create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
+             "/initialpose", 10, std::bind(&RobotsLocalizationNode::initial_pose_cbk, this, std::placeholders::_1));
+
+-        std::thread mainThread(&RobotsLocalizationNode::mainProcessThread, this);
+-        mainThread.detach();
++        main_process_thread_ = std::thread(&RobotsLocalizationNode::mainProcessThread, this);
++    }
++    ~RobotsLocalizationNode() override {
++        flg_exit = true;
++        sig_buffer.notify_all();
++        if (main_process_thread_.joinable()) {
++            main_process_thread_.join();
++        }
+     }
+     void points_cache_collect();
+     void lasermap_fov_segment();
+     void map_incremental();
+     void livox_pcl_cbk(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr& msg);
+     void standard_pcl_cbk(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
+     void imu_cbk(const sensor_msgs::msg::Imu::ConstSharedPtr& msg_in);
+     void uwb_cbk(const nlink_message::msg::LinktrackNodeframe2::ConstSharedPtr& msg);
+     void mocap_cbk(const geometry_msgs::msg::PoseStamped::ConstSharedPtr& msg);
+     void initial_pose_cbk(const geometry_msgs::msg::PoseWithCovarianceStamped::ConstSharedPtr& msg);
+     bool sync_packages(MeasureGroup& meas);
+     void loadConfig();
+     void mainProcess();
+     void mainProcessThread();
+     void initializeUWB();
++
++   private:
++    std::thread main_process_thread_;
+ };
+\ No newline at end of file
+diff --git a/robots_localization_ros2/src/robots_localization_node.cpp b/robots_localization_ros2/src/robots_localization_node.cpp
+--- a/robots_localization_ros2/src/robots_localization_node.cpp
++++ b/robots_localization_ros2/src/robots_localization_node.cpp
+@@ -1514,2 +1514,3 @@ int main(int argc, char** argv) {
+     rclcpp::spin(node);
++    node.reset();
+     return 0;

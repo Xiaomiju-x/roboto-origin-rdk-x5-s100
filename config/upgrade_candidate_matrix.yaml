@@ -1,0 +1,121 @@
+schema_version: 1
+observed_at: "2026-08-29"
+scope: >-
+  X5-only algorithm upgrades after the official O0-O6 offline baseline. All
+  inputs are deterministic synthetic data. No robot, motor, CAN, camera,
+  lidar, IMU, device driver, or motion command is authorized by this matrix.
+
+gates:
+  s100_gate_open: true
+  rule: >-
+    S100 remains closed until every selected X5 candidate passes host A/B,
+    export, X5 offline execution, rollback, and final safety-state checks.
+
+candidates:
+  - id: U1
+    name: temporal_occupancy_flow
+    origin:
+      xrd_patterns:
+        - temporal BEV history
+        - future occupancy and flow
+        - uncertainty and shadow evaluation
+      implementation: project_owned_from_scratch
+    status: SELECTED
+    execution_status: PASS
+    host_acceptance:
+      - candidate future-occupancy IoU exceeds last-frame persistence
+      - candidate dynamic-flow EPE is lower than zero-flow
+      - exported ONNX agrees with PyTorch on CPU and CUDA
+    x5_acceptance:
+      - fixed 1x4x32x32 ONNX input executes on ARM CPU
+      - all outputs are finite and agree with the host CPU result
+    authority: passive_shadow_only
+    rollback: remove candidate launch/model path; official baseline is untouched
+
+  - id: U2
+    name: trust_and_action_guard
+    origin:
+      xrd_patterns:
+        - conformal calibration
+        - OOD and stale-input checks
+        - deterministic ShadowGuard degradation
+      implementation: project_owned_from_scratch
+    status: SELECTED
+    execution_status: PASS
+    host_acceptance:
+      - preserves at least 95 percent of clean commands
+      - catches all injected NaN, stale, OOD, jump, and limit faults
+      - has fewer unsafe passes than the finite-clamp baseline
+    x5_acceptance:
+      - deterministic replay matches the host event decisions
+    authority: offline_filter_only
+    rollback: bypass project-owned guard; no official file is modified
+
+  - id: U3
+    name: kiss_icp_shadow_odometry
+    origin:
+      upstream: PRBonn/kiss-icp
+      version: v1.3.0
+      commit: b16835283aee62f7d5e2bdf6c1c3bb2930de74ff
+      license: MIT
+    status: SELECTED
+    execution_status: PASS
+    host_acceptance:
+      - source pin, license, and ROS 2 package metadata are audited
+    x5_acceptance:
+      - isolated ROS_DOMAIN_ID 42 build succeeds
+      - deterministic synthetic static point-cloud sequence produces finite odometry
+      - deterministic 4 cm/frame translation sequence tracks the known trajectory
+      - process exits cleanly and publishes no command or robot-control topic
+    authority: passive_shadow_only
+    rollback: remove isolated overlay and source checkout
+
+  - id: R1
+    name: wbc_agile
+    origin:
+      upstream: nvidia-isaac/WBC-AGILE
+      observed_commit: 408a27cdfc204cdeb5b342f2b737e770ebda63ca
+      license: Apache-2.0 except BSD-3-Clause RSL-RL compatibility patch
+    status: AUDIT_ONLY
+    reason: >-
+      Current main requires Python 3.12, Isaac Lab 3.0.0 beta 2, PyTorch
+      2.11, and examples use 2048 environments for other robot models. This
+      conflicts with the frozen official RPO Isaac Lab 2.3.2 environment and
+      is not a bounded 6 GB VRAM X5 deployment candidate today.
+
+  - id: R2
+    name: asap_delta_action
+    origin:
+      upstream: LeCAR-Lab/ASAP
+      observed_commit: df5320cc47dd8cad97961bdfabfe402dd62ad999
+      license: MIT
+    status: AUDIT_ONLY
+    reason: >-
+      The released recipes target G1 with 4096-5000 environments and require
+      robot-specific motion/action datasets. Delta-action adaptation is useful
+      after RPO actuator telemetry exists, not before the robot is connected.
+
+  - id: R3
+    name: depth_anything_v2_small
+    origin:
+      upstream: DepthAnything/Depth-Anything-V2
+      observed_commit: a561b849ebae10a6f5ef49e26c83cbbcd36c71bf
+      license: Apache-2.0 for Small; larger checkpoints are CC-BY-NC-4.0
+    status: DEFERRED
+    reason: >-
+      It is an RGB monocular relative-depth model and cannot be meaningfully
+      compared with the official D435i depth path without camera frames. The
+      Small variant remains the only eligible checkpoint for a later camera A/B.
+
+  - id: R4
+    name: yoloe_26
+    origin:
+      upstream: ultralytics/ultralytics
+      license: AGPL-3.0
+    status: DEFERRED
+    reason: >-
+      Open-vocabulary perception is relevant, but current project distribution
+      and model-weight obligations require a separate license decision and
+      real RGB evaluation set. It is not included in this offline gate.
+
+acceptance_status_values: [SELECTED, AUDIT_ONLY, DEFERRED, PASS, FAIL]

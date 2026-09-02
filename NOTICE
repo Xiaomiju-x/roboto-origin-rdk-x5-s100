@@ -1,0 +1,17 @@
+Roboto Origin × RDK X5 / S100 engineering validation toolkit
+Copyright 2026 Xiaomiju-x
+
+This repository contains project-owned orchestration, validation, configuration,
+documentation, and small algorithm modules. It does not vendor the referenced
+upstream repositories, model weights, datasets, RDK toolchains, or board binaries.
+
+The repository includes patch files intended for separately obtained upstream
+projects. Those upstream projects retain their own copyright and license terms.
+The exact repositories, revisions, and observed license metadata are recorded in
+inventory/ and config/. In particular, referenced projects include Roboparty,
+D-Robotics, KISS-ICP, Isaac Lab, Open3D, ROS 2/Nav2, Depth Anything V2, ASAP,
+WBC-AGILE, and their transitive dependencies.
+
+Roboto Origin, Roboparty, RDK, D-Robotics, and other product or project names may
+be trademarks of their respective owners. This repository is not an official
+distribution of Roboparty or D-Robotics.

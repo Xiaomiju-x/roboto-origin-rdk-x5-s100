@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "decided_at": "2026-08-29T19:02:00+08:00",
+  "scope": "S100 single-board offline only; no sensors, robot, device access, or control output",
+  "acceptance": {
+    "required_official_smoke_models": 4,
+    "required_official_smoke_passes": 4,
+    "optional_frontier_candidates_may_be_blocked_when_dependency_or_robot_contract_is_missing": true,
+    "blocked_candidates_are_not_counted_as_deployed": true
+  },
+  "repositories": [
+    {
+      "id": "F1",
+      "name": "rdk_model_zoo",
+      "url": "https://github.com/D-Robotics/rdk_model_zoo.git",
+      "branch": "rdk_s",
+      "commit": "872748d563c99a490733760c54865b2a70f3499f",
+      "license": "Apache-2.0",
+      "decision": "PASS_DEPLOYED",
+      "deployment": [
+        "YOLO26 detection",
+        "ByteTrack",
+        "Depth Anything V2",
+        "PointNet chair part segmentation"
+      ],
+      "evidence_kind": "S100 BPU runtime with frozen local files"
+    },
+    {
+      "id": "F2",
+      "name": "mono_edgetam",
+      "url": "https://github.com/D-Robotics/mono_edgetam.git",
+      "commit": "0167c87ad8010d20dfa7ac764eff3ff1b8e90233",
+      "license": "Apache-2.0",
+      "license_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "decision": "BLOCKED_SYSTEM_DEPENDENCY",
+      "reason": "Official S100 HBM pipeline requires ament/colcon plus TROS dnn_node, hbm_img_msgs, hobot_cv and ai_msgs; none are installed and system installation is outside the confirmed boundary."
+    },
+    {
+      "id": "F3",
+      "name": "hobot_stereonet",
+      "url": "https://github.com/D-Robotics/hobot_stereonet.git",
+      "commit": "034c2274188fd21270f8d57f47cb65bdc5bdc300",
+      "license": "Apache-2.0",
+      "license_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "decision": "BLOCKED_SYSTEM_DEPENDENCY",
+      "reason": "Official S100 ROS path is not installed; selective standalone rebuild additionally needs Git LFS model/runtime payloads and a separately verified S100 build contract. PointNet is the deployed D4 3D fixture instead."
+    },
+    {
+      "id": "F3_REFERENCE",
+      "name": "hobot_centerpoint",
+      "url": "https://github.com/D-Robotics/hobot_centerpoint.git",
+      "commit": "56f2fdf7aa0edeac8bb7db715d54ee49b6008fbd",
+      "license": "Apache-2.0",
+      "license_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "decision": "BLOCKED_SYSTEM_DEPENDENCY",
+      "reason": "Official local point-cloud playback requires tros-humble-hobot-centerpoint and websocket packages that are not installed; apt changes are not authorized."
+    },
+    {
+      "id": "F4",
+      "name": "walk-these-ways",
+      "url": "https://github.com/Improbable-AI/walk-these-ways.git",
+      "commit": "0e7236bdc81ce855cbe3d70345a7899452bdeb1c",
+      "decision": "NOT_APPLICABLE_ROBOT_CONTRACT",
+      "reason": "The public deployment is Unitree Go1-specific and includes a low-level robot control path; it is neither an S100 deployment nor a verified 23-joint Roboto contract."
+    },
+    {
+      "id": "F5",
+      "name": "ASAP",
+      "url": "https://github.com/LeCAR-Lab/ASAP.git",
+      "commit": "df5320cc47dd8cad97961bdfabfe402dd62ad999",
+      "decision": "AUDIT_ONLY_CONTRACT_MISMATCH",
+      "reason": "The released training and motion contracts target Unitree G1; Roboto URDF, actuator model, joint order and observation/action contract are not available yet."
+    },
+    {
+      "id": "F6",
+      "name": "rdk_LeRobot_tools",
+      "url": "https://github.com/D-Robotics/rdk_LeRobot_tools.git",
+      "branch": "stable",
+      "commit": "326ea043be204de25223d95c7d918efe8672dc66",
+      "license": "Apache-2.0",
+      "license_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "decision": "REFERENCE_ONLY_DATASET_REQUIRED",
+      "reason": "ACT is officially verified on S100, but export needs a trained checkpoint and dataset; the published board entry directly creates an SO-101 robot and camera control loop, so it is not executed in this phase."
+    },
+    {
+      "id": "F7",
+      "name": "WBC-AGILE",
+      "url": "https://github.com/nvidia-isaac/WBC-AGILE.git",
+      "commit": "408a27cdfc204cdeb5b342f2b737e770ebda63ca",
+      "license": "Apache-2.0 and BSD-3-Clause",
+      "decision": "TRAINING_PC_ONLY_PENDING_ROBOT_CONTRACT",
+      "reason": "The framework targets Isaac Lab/Isaac Sim and validated Booster T1 or Unitree G1 contracts; it is a future RTX 4050 training reference, not a current S100 board deployment."
+    }
+  ],
+  "d4_deployed_increment": {
+    "vision": "YOLO26 detection on S100 BPU",
+    "tracking": "ByteTrack with YOLOv5x detector on S100 BPU",
+    "dense_perception": "Depth Anything V2 on S100 BPU",
+    "three_dimensional": "PointNet part segmentation on S100 BPU",
+    "rl_control": "No new internet candidate is honestly deployable without a robot-specific dataset/checkpoint or contract; D3 locked S100 BPU policies remain the offline deployment baseline."
+  }
+}

@@ -1,0 +1,71 @@
+schema_version: 1
+observed_at: "2026-08-29"
+host:
+  os: "Windows 11 Home"
+  cpu: "AMD Ryzen 7 7735H"
+  memory_gib: 16
+  gpu: "NVIDIA GeForce RTX 4050 Laptop GPU"
+  gpu_memory_mib: 6141
+  nvidia_driver: "610.62"
+  cuda_compute_capability: "8.9"
+  workspace_drive_free_gib_approx: 1790
+
+software_observed:
+  powershell: available
+  git: available
+  docker_client: "29.6.1"
+  docker_daemon: stopped
+  wsl_distributions:
+    - name: docker-desktop
+      state: stopped
+  ubuntu_wsl: absent
+  system_python: absent
+  isolated_python:
+    path: "<repo>/h/python"
+    version: "3.11.15"
+  isolated_environment:
+    path: "<repo>/h/env"
+    uv: "0.11.28"
+    isaac_sim: "5.1.0.0"
+    isaac_lab_source:
+      version: "main pinned as of the RoboParty source commit"
+      commit: "b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8"
+    pytorch: "2.7.0+cu128"
+    tensordict: "0.11.0"
+    flatdict: "4.1.0"
+    onnxruntime_gpu: "1.26.0"
+    onnx: "1.18.0"
+    mujoco: "3.3.3"
+    opencv: "4.11.0.86"
+    roboparty_train_commit: "92008a6317d6d0efe8b58abc2fb3c630c75992c0"
+    robolab_commit: "6b1c3d9988497c8961dcba77892de32edc1770e1"
+    rsl_rl_commit: "6986d4d1b9fbab96fb61d51f07de419bc95432f1"
+    eula_state: explicitly_accepted_for_this_project_run
+    known_dependency_conflict: >-
+      Isaac Lab pins starlette 0.49.1 while Isaac Sim's fastapi 0.115.7 declares
+      starlette <0.46.0; all other pip checks pass.
+
+assessment:
+  source_inventory: ready
+  static_configuration_checks: ready
+  cuda_runtime: ready
+  onnx_cuda_runtime: ready
+  mujoco_sim2sim: ready
+  official_training_environment: verified
+  reason: >-
+    The isolated Python 3.11, Isaac Sim 5.1.0, exact Isaac Lab main source pin,
+    RoboLab, project RSL-RL, CUDA PyTorch, MuJoCo and ONNX Runtime GPU stack
+    completed all eight official one-environment training/checkpoint/play/export
+    tasks. Artifact and CPU/CUDA export verification also passed.
+  training_capacity: >-
+    RTX 4050 Laptop 6 GB passed all official tasks at one environment plus real
+    CUDA tensor, ONNX CUDA-provider and bounded MuJoCo probes. The official
+    4096/8192-environment long-training defaults remain outside the capacity
+    claimed by this 16 GB RAM / 6 GB VRAM acceptance and must be scaled from
+    measured results.
+
+actions_not_taken:
+  - "No EULA environment variable was persisted; acceptance was forwarded only to the bounded child processes."
+  - "No system Python or system-wide package installation was used."
+  - "Docker daemon and WSL were not started."
+  - "No robot, CAN, motor, camera, lidar, IMU, or other peripheral was accessed."

@@ -1,0 +1,148 @@
+schema_version: 1
+planned_at: "2026-08-29"
+status: D6_PASS_OFFLINE_GATE_COMPLETE
+scope: >-
+  S100 single-board offline algorithm reproduction and upgrade only. No robot,
+  motor, CAN, camera, lidar, IMU, device driver, or control output is authorized.
+
+gates:
+  read_only_d0_authorized: true
+  full_execution_authorized: true
+  s100_power_on_reported: true
+  s100_offline_gate_complete: true
+  order: [D0, D1, D2, D3, D4, D5, D6]
+
+network_validation:
+  endpoints_redacted_in_public_snapshot: true
+  ssh_22: PASS
+  vnc_5900: PASS
+  direct_identity_verification: BLOCKED_LINK_DOWN
+  ssh_inventory: PASS
+
+observed_board:
+  evidence: evidence/s100/d0_readonly_snapshot_20260829.json
+  d0_status: PASS
+  board_name: S100_RDK_V1P0
+  soc_name: S100
+  product: RDK S100
+  bpu: Nash-e
+  int8_tops: 80
+  official_memory_gb: 12
+  linux_visible_memory_gib: 9.3
+  rdk_os: 4.0.5-Beta
+  kernel: 6.1.158-rt58-DR-4.0.5-2603191535-gf29a43-g94bc27
+  hbm_runtime: 0.1.0.post1
+  ucp_runtime: 3.13.6
+  ros: ROS 2 Humble
+  root_available_gib_approx: 16
+  benchmark_idle_gate: D0_CAPTURE_BUSY_D5_CONTROLLED_STRESS_PASS
+
+official_sku_matrix:
+  - soc_name: s100
+    product: RDK S100
+    model: KS1E55Y
+    bpu: Nash-e
+    int8_tops: 80
+    memory_gb: 12
+    cpu_max_ghz: 1.5
+  - soc_name: s100p
+    product: RDK S100P
+    model: KS1P75Y
+    bpu: Nash-m
+    int8_tops: 128
+    memory_gb: 24
+    cpu_max_ghz: 2.0
+
+required_reproduction:
+  - id: S0
+    name: x5_official_offline_suite
+    content:
+      - nine official motion and RL policy ONNX models
+      - official depth encoder and synthetic depth-history pipeline
+      - PCD to PGM and Nav2 synthetic planning
+      - FAST-LIO2 synthetic point-cloud and IMU replay
+    cpu_status: PASS
+    bpu_status: CPU_FALLBACK
+    deployment_status: PASS
+    bpu_detail: 9 BPU PASS; policy_attn_enc locked to CPUExecutionProvider after six rejected HBM candidates
+  - id: S1
+    name: temporal_occupancy_flow_uncertainty
+    x5_origin: U1
+    cpu_status: PASS
+    bpu_status: PASS
+    bpu_detail: 128 tests; three outputs; cosine mean 0.9998069839537895; floor 0.9969569872868342
+  - id: S2
+    name: trust_and_action_guard
+    x5_origin: U2
+    cpu_status: PASS
+    bpu_status: NOT_APPLICABLE
+  - id: S3
+    name: kiss_icp_shadow_odometry
+    x5_origin: U3
+    cpu_status: PASS
+    bpu_status: NOT_APPLICABLE
+
+frontier_candidates:
+  - id: F1
+    name: d_robotics_nash_vision_smoke
+    source: D-Robotics/rdk_model_zoo rdk_s branch
+    examples: [YOLO26, ByteTrack, Depth-Anything-V2, PointNet]
+    selection: REQUIRED_SMOKE
+    status: PASS
+  - id: F2
+    name: mono_edgetam
+    source: D-Robotics/mono_edgetam
+    selection: PRIORITY_CANDIDATE
+    authority: passive_offline_only
+    status: BLOCKED
+    reason: commit-locked audit passed; board lacks the required TROS/system dependency stack
+  - id: F3
+    name: s100_3d_perception
+    source_options: [D-Robotics/hobot_bev, D-Robotics/hobot_centerpoint, D-Robotics/hobot_stereonet]
+    selection: AUDIT_ONLY
+    status: BLOCKED
+    reason: CenterPoint and StereoNet are commit-locked but require absent TROS/system dependencies; PointNet smoke is covered by F1
+  - id: F4
+    name: walk_these_ways_upstream_go1_audit
+    source: Improbable-AI/walk-these-ways
+    selection: NOT_APPLICABLE
+    authority: passive_shadow_only
+    status: NOT_APPLICABLE
+    reason: upstream repository is Go1-specific and is not an S100 or Roboto deployment contract
+  - id: F5
+    name: asap_s100_humanoid
+    source: LeCAR-Lab/ASAP
+    selection: AUDIT_ONLY
+    reason: upstream G1 simulation/action contract does not match the future Roboto hardware contract
+    status: BLOCKED
+  - id: F6
+    name: lerobot_act_bpu
+    source: D-Robotics/rdk_LeRobot_tools
+    selection: REFERENCE_ONLY
+    authority: file_sink_only
+    status: BLOCKED
+    reason: retained only as a dataset/export reference; robot-control entry points are outside this offline stage
+  - id: F7
+    name: wbc_agile
+    source: nvidia-isaac/WBC-AGILE
+    selection: AUDIT_ONLY
+    status: BLOCKED
+    reason: retained as a future RTX 4050 training reference until URDF and actuator contracts exist
+
+common_acceptance:
+  same_fixture_hash_as_x5: true
+  bpu_cosine_similarity_target: 0.999
+  bpu_cosine_similarity_hard_floor: 0.99
+  bpu_warmup_min: 20
+  bpu_measurements_min: 100
+  policy_p99_ms_max: 20
+  mock_guard_p99_ms_max: 5
+  policy_continuous_steps_min: 10000
+  nav_synthetic_goals_min: 20
+  fail_close_fault_injection: true
+  no_device_access: true
+  no_control_output: true
+  clean_exit_and_no_residual_process: true
+  rollback_required: true
+
+status_values: [NOT_RUN, PASS, FAIL, BLOCKED, CPU_FALLBACK, NOT_APPLICABLE]

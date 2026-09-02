@@ -1,0 +1,4 @@
+# Project-local Python additions required by the official PCD-to-PGM tool.
+# NumPy is supplied by the locked Open3D runtime bundle.
+pillow==11.3.0
+scipy==1.15.3

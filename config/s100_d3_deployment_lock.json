@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "finalized_at": "2026-08-29T17:12:41.1127909+08:00",
+  "scope": "S100 D3 single-board offline deployment decision; no robot or external peripherals",
+  "source_evidence": "evidence/s100/board_d3/attn_sweep/2026-08-29T17-10-31+08-00/result.json",
+  "source_evidence_sha256": "7e4152c83983d59d0c870445c144c6037152f80ed05212df4bc259072c8a29ea",
+  "model": "policy_attn_enc",
+  "deployment": "CPU_FALLBACK",
+  "reason": "No frozen HBM candidate passed every numerical and latency gate; CPU passed the same policy p99 gate.",
+  "cpu": {
+    "checks": {
+      "finite": true,
+      "policy_cpu_p99_latency": true,
+      "warmup_and_measurement_counts": true
+    },
+    "timing": {
+      "warmups": 20,
+      "runs": 200,
+      "p50_ms": 0.6005475,
+      "p95_ms": 1.1028710000000002,
+      "p99_ms": 1.2009456799999974,
+      "max_ms": 1.588234,
+      "mean_ms": 0.73770345
+    }
+  },
+  "rejected_bpu_candidates": [
+    {
+      "label": "all_int16",
+      "sha256": "4952b214e3abfe20e4c4eb9d104fcc74fb9a927dfd476812f81924f2a4bd4e5a",
+      "bytes": 4105896,
+      "status": "REJECTED",
+      "checks": {
+        "finite": true,
+        "mean_cosine_target": true,
+        "per_sample_cosine_floor": true,
+        "policy_max_abs_error": false,
+        "policy_direction_agreement": true,
+        "policy_p99_latency": true,
+        "warmup_and_measurement_counts": true
+      },
+      "cosine_mean": 0.9991523223347692,
+      "cosine_min": 0.9929955208270128,
+      "max_abs_error": 0.22764122486114502,
+      "direction_agreement": 0.9992478375329071,
+      "bpu_runtime_api_timing": {
+        "warmups": 20,
+        "runs": 200,
+        "p50_ms": 0.7484435,
+        "p95_ms": 3.7530052999999968,
+        "p99_ms": 11.169391329999995,
+        "max_ms": 17.125383,
+        "mean_ms": 1.1949866550000001
+      }
+    },
+    {
+      "label": "full_fp16",
+      "sha256": "1e8451c32857e2eab0d00494e3447939f564742435602a7840a174759d203b9e",
+      "bytes": 14967320,
+      "status": "REJECTED",
+      "checks": {
+        "finite": true,
+        "mean_cosine_target": true,
+        "per_sample_cosine_floor": true,
+        "policy_max_abs_error": true,
+        "policy_direction_agreement": true,
+        "policy_p99_latency": false,
+        "warmup_and_measurement_counts": true
+      },
+      "cosine_mean": 0.9999990593866384,
+      "cosine_min": 0.9999960565790358,
+      "max_abs_error": 0.005437374114990234,
+      "direction_agreement": 1.0,
+      "bpu_runtime_api_timing": {
+        "warmups": 20,
+        "runs": 200,
+        "p50_ms": 21.941760000000002,
+        "p95_ms": 31.2480612,
+        "p99_ms": 33.479754240000005,
+        "max_ms": 33.982625,
+        "mean_ms": 23.736014055000002
+      }
+    },
+    {
+      "label": "int16_weights",
+      "sha256": "5b24e79011fd4717b195b41970c2e6a77def280ff4794ba61cc3c89cecf7a7fe",
+      "bytes": 6613272,
+      "status": "REJECTED",
+      "checks": {
+        "finite": true,
+        "mean_cosine_target": true,
+        "per_sample_cosine_floor": true,
+        "policy_max_abs_error": false,
+        "policy_direction_agreement": true,
+        "policy_p99_latency": true,
+        "warmup_and_measurement_counts": true
+      },
+      "cosine_mean": 0.9993156827936802,
+      "cosine_min": 0.9949579261818742,
+      "max_abs_error": 0.22767925262451172,
+      "direction_agreement": 0.9992478375329071,
+      "bpu_runtime_api_timing": {
+        "warmups": 20,
+        "runs": 200,
+        "p50_ms": 0.9401385,
+        "p95_ms": 5.733242699999982,
+        "p99_ms": 10.907966569999958,
+        "max_ms": 16.437502,
+        "mean_ms": 1.483145685
+      }
+    },
+    {
+      "label": "actor_fp16",
+      "sha256": "da58b21b0aec2dc86756815218d1e94917437e6a89c29c17c076d5a7b4d53458",
+      "bytes": 20412256,
+      "status": "REJECTED",
+      "checks": {
+        "finite": true,
+        "mean_cosine_target": true,
+        "per_sample_cosine_floor": true,
+        "policy_max_abs_error": false,
+        "policy_direction_agreement": true,
+        "policy_p99_latency": true,
+        "warmup_and_measurement_counts": true
+      },
+      "cosine_mean": 0.9991680892383128,
+      "cosine_min": 0.9928054002939674,
+      "max_abs_error": 0.23064827919006348,
+      "direction_agreement": 0.9992478375329071,
+      "bpu_runtime_api_timing": {
+        "warmups": 20,
+        "runs": 200,
+        "p50_ms": 3.9643604999999997,
+        "p95_ms": 12.24850394999999,
+        "p99_ms": 14.593063679999998,
+        "max_ms": 16.565274,
+        "mean_ms": 5.2129388400000005
+      }
+    },
+    {
+      "label": "sensitive_nodes_fp16",
+      "sha256": "c31eb7d532bd8ef40ff783afe5ea63d53b4a286dc0e61394f38f02a18a4c6589",
+      "bytes": 4690792,
+      "status": "REJECTED",
+      "checks": {
+        "finite": true,
+        "mean_cosine_target": true,
+        "per_sample_cosine_floor": true,
+        "policy_max_abs_error": false,
+        "policy_direction_agreement": true,
+        "policy_p99_latency": false,
+        "warmup_and_measurement_counts": true
+      },
+      "cosine_mean": 0.9991560292396067,
+      "cosine_min": 0.9939161856810196,
+      "max_abs_error": 0.24655508995056152,
+      "direction_agreement": 0.9988717562993606,
+      "bpu_runtime_api_timing": {
+        "warmups": 20,
+        "runs": 200,
+        "p50_ms": 12.302484499999998,
+        "p95_ms": 20.518507849999995,
+        "p99_ms": 21.85988748999998,
+        "max_ms": 25.171379,
+        "mean_ms": 14.16504122
+      }
+    },
+    {
+      "label": "frontend_fp16",
+      "sha256": "d32da028a2244bb6c518d182e791fc46db0781f1129e0d696713d8d84d264182",
+      "bytes": 15788768,
+      "status": "REJECTED",
+      "checks": {
+        "finite": true,
+        "mean_cosine_target": true,
+        "per_sample_cosine_floor": true,
+        "policy_max_abs_error": false,
+        "policy_direction_agreement": true,
+        "policy_p99_latency": false,
+        "warmup_and_measurement_counts": true
+      },
+      "cosine_mean": 0.9996811016329529,
+      "cosine_min": 0.9948080643756104,
+      "max_abs_error": 0.13148081302642822,
+      "direction_agreement": 0.9996239187664535,
+      "bpu_runtime_api_timing": {
+        "warmups": 20,
+        "runs": 200,
+        "p50_ms": 18.595111000000003,
+        "p95_ms": 26.692878949999994,
+        "p99_ms": 29.555060059999995,
+        "max_ms": 30.361922,
+        "mean_ms": 20.401283175
+      }
+    }
+  ],
+  "required_bpu_models": [
+    "encoder",
+    "policy"
+  ],
+  "external_device_access": false,
+  "control_output": false,
+  "result": "PASS"
+}

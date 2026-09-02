@@ -1,0 +1,53 @@
+/**:
+  ros__parameters:
+    common:
+      namespace: "roboto_offline"
+      lid_topic: "/roboto_offline/synthetic_points"
+      imu_topic: "/roboto_offline/synthetic_imu"
+      time_sync_en: false
+      time_offset_lidar_to_imu: 0.0
+    preprocess:
+      lidar_type: 3
+      scan_line: 64
+      blind: 0.4
+      timestamp_unit: 3
+      scan_rate: 10
+    point_filter_num: 1
+    mapping:
+      mapping_en: true
+      acc_cov: 0.1
+      gyr_cov: 0.1
+      b_acc_cov: 0.0001
+      b_gyr_cov: 0.0001
+      fov_degree: 360.0
+      det_range: 50.0
+      extrinsic_est_en: false
+      extrinsic_T: [0.0, 0.0, 0.0]
+      extrinsic_R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+    publish:
+      path_en: true
+      imu2robot_T: [0.0, 0.0, 0.0]
+      imu2robot_R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      scan_publish_en: true
+      dense_publish_en: true
+      scan_bodyframe_pub_en: true
+      elevation_publish_en: false
+      elevation_viz_pub_en: false
+    pcd_save:
+      pcd_save_en: false
+      interval: -1
+    max_iteration: 3
+    filter_size_surf: 0.20
+    filter_size_map: 0.20
+    cube_side_length: 100.0
+    runtime_pos_log_enable: false
+    prior:
+      prior_T: [0.0, 0.0, 0.0]
+      prior_R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      estimateGrav: true
+    uwb:
+      use_uwb: false
+      log_mocap_traj: false
+      log_fusion_traj: false
+    zupt:
+      use_zupt: false

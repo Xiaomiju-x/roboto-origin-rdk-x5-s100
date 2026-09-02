@@ -1,0 +1,147 @@
+diff --git a/robots_localization_ros2/include/common_lib.h b/robots_localization_ros2/include/common_lib.h
+--- a/robots_localization_ros2/include/common_lib.h
++++ b/robots_localization_ros2/include/common_lib.h
+@@ -52,69 +52,69 @@ typedef Matrix4f M4F;
+ #define MF(a, b) Matrix<float, (a), (b)>
+ #define VF(a) Matrix<float, (a), 1>
+
+-M3D Eye3d = M3D::Identity();
+-M3F Eye3f = M3F::Identity();
+-V3D Zero3d = V3D(0, 0, 0);
+-V3F Zero3f = V3F(0, 0, 0);
++inline M3D Eye3d = M3D::Identity();
++inline M3F Eye3f = M3F::Identity();
++inline V3D Zero3d = V3D(0, 0, 0);
++inline V3F Zero3f = V3F(0, 0, 0);
+
+ /**************** uwb相关变量定义 ***************/
+-bool USE_UWB = false;
+-bool opt_with_uwb = false;
+-string uwb_topic;
+-string mocap_topic;
+-bool log_mocap_traj, log_fusion_traj;
+-std::ofstream fout_mocap, fout_fusion, fout_uwb_calib;
++inline bool USE_UWB = false;
++inline bool opt_with_uwb = false;
++inline string uwb_topic;
++inline string mocap_topic;
++inline bool log_mocap_traj, log_fusion_traj;
++inline std::ofstream fout_mocap, fout_fusion, fout_uwb_calib;
+ // UWB观测更新参数
+-int UWB_ANCHOR_NUM = 4;
+-std::unordered_map<int, int> anchor_id_state_index;
+-bool esti_uwb_scale;
+-bool esti_uwb_bias;
+-bool esti_uwb_offset;
+-bool esti_uwb_anchor;
+-bool estimate_td;
+-double uwb_to_imu_td;
+-double td_std;
+-double uwb_range_std = 0.5;
+-double uwb_chi2_threshold;
++inline int UWB_ANCHOR_NUM = 4;
++inline std::unordered_map<int, int> anchor_id_state_index;
++inline bool esti_uwb_scale;
++inline bool esti_uwb_bias;
++inline bool esti_uwb_offset;
++inline bool esti_uwb_anchor;
++inline bool estimate_td;
++inline double uwb_to_imu_td;
++inline double td_std;
++inline double uwb_range_std = 0.5;
++inline double uwb_chi2_threshold;
+ // UWB基站初始化参数
+-std::vector<double> uwb2imuT;
+-V3D IMU_T_wrt_UWB(Zero3d);
+-double tag_move_threshold;
+-int offline_calib_data_num;
+-std::vector<double> offline_calib_move_3d_threshold;
+-V3D move_3d_threshold;
+-std::vector<double> offline_calib_maxmin_3d_threshold;
+-V3D maxmin_3d_threshold;
+-double near_measure_dist_threshold;
+-int near_measure_num_threshold;
+-bool constrain_bias;
+-double bias_limit;
+-int calib_data_group_num;
+-double consistent_threshold;
+-int init_bias_data_num;
+-std::vector<double> online_calib_move_3d_threshold;
+-int ransac_sample_num;
+-double ransac_average_error_threshold;
+-bool use_calibrated_anchor;
+-std::vector<double> calibrated_anchor1;
+-std::vector<double> calibrated_anchor2;
+-std::vector<double> calibrated_anchor3;
+-std::vector<double> calibrated_anchor4;
++inline std::vector<double> uwb2imuT;
++inline V3D IMU_T_wrt_UWB(Zero3d);
++inline double tag_move_threshold;
++inline int offline_calib_data_num;
++inline std::vector<double> offline_calib_move_3d_threshold;
++inline V3D move_3d_threshold;
++inline std::vector<double> offline_calib_maxmin_3d_threshold;
++inline V3D maxmin_3d_threshold;
++inline double near_measure_dist_threshold;
++inline int near_measure_num_threshold;
++inline bool constrain_bias;
++inline double bias_limit;
++inline int calib_data_group_num;
++inline double consistent_threshold;
++inline int init_bias_data_num;
++inline std::vector<double> online_calib_move_3d_threshold;
++inline int ransac_sample_num;
++inline double ransac_average_error_threshold;
++inline bool use_calibrated_anchor;
++inline std::vector<double> calibrated_anchor1;
++inline std::vector<double> calibrated_anchor2;
++inline std::vector<double> calibrated_anchor3;
++inline std::vector<double> calibrated_anchor4;
+ /**************************************************/
+
+ /***************** zupt相关变量定义 *****************/
+-bool USE_ZUPT = false;
+-bool opt_with_zupt = false;
+-double zupt_duration;
+-int zupt_imu_data_num;
+-double zupt_max_acc_std;
+-double zupt_max_gyr_std;
+-double zupt_max_gyr_median;
+-double zupt_gyr_std;
+-double zupt_vel_std;
+-double zupt_acc_std;
+-double zupt_chi2_threshold;
+-V3D recent_avg_acc, recent_avg_gyr;
++inline bool USE_ZUPT = false;
++inline bool opt_with_zupt = false;
++inline double zupt_duration;
++inline int zupt_imu_data_num;
++inline double zupt_max_acc_std;
++inline double zupt_max_gyr_std;
++inline double zupt_max_gyr_median;
++inline double zupt_gyr_std;
++inline double zupt_vel_std;
++inline double zupt_acc_std;
++inline double zupt_chi2_threshold;
++inline V3D recent_avg_acc, recent_avg_gyr;
+ /**************************************************/
+
+ struct UWBAnchor
+@@ -263,7 +263,7 @@ struct UWBAnchor
+     near_measure_num = 0;
+   }
+ };
+-std::unordered_map<int, UWBAnchor> anchor_map;
++inline std::unordered_map<int, UWBAnchor> anchor_map;
+
+ struct UWBObservation
+ {
+@@ -277,7 +277,7 @@ struct IMU
+   V3D acc;
+   V3D gyr;
+ };
+-deque<IMU> zupt_imu_buffer;
++inline deque<IMU> zupt_imu_buffer;
+
+ struct MeasureGroup  // Lidar data and imu dates for the curent process
+ {

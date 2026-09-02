@@ -1,0 +1,28 @@
+diff --git a/robots_localization_ros2/src/robots_localization_node.h b/robots_localization_ros2/src/robots_localization_node.h
+--- a/robots_localization_ros2/src/robots_localization_node.h
++++ b/robots_localization_ros2/src/robots_localization_node.h
+@@ -413,6 +413,24 @@ class RobotsLocalizationNode : public rclcpp::Node {
+         if (main_process_thread_.joinable()) {
+             main_process_thread_.join();
+         }
++        elevation_map_timer.reset();
++        sub_initial_pose.reset();
++        sub_mocap.reset();
++        sub_uwb.reset();
++        sub_imu.reset();
++        sub_pcl_livox.reset();
++        sub_pcl.reset();
++        tf_broadcaster.reset();
++        pubElevation.reset();
++        pubElevationMap.reset();
++        pubGlobalElevationMap.reset();
++        pubPath.reset();
++        pubIMUBias.reset();
++        sub_pub_imu.reset();
++        pubOdomAftMapped.reset();
++        pubLaserCloudFull_world.reset();
++        pubLaserCloudFull_body.reset();
++        pubLaserCloudFull_global.reset();
+     }
+     void points_cache_collect();
+     void lasermap_fov_segment();

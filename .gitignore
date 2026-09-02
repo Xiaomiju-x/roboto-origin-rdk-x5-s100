@@ -1,0 +1,54 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*
+secrets*
+
+# Generated and heavyweight content
+.artifacts/
+artifacts/
+build/
+install/
+log/
+logs/
+cache/
+datasets/
+models/
+training_runs/
+upstream/
+third_party/src/
+evidence/raw/
+evidence/**/*.bag
+evidence/**/*.db3
+evidence/**/*.mcap
+evidence/**/*.onnx
+evidence/**/*.pt
+evidence/**/*.pth
+evidence/**/*.npz
+evidence/**/*.hbm
+evidence/**/*.bin
+evidence/**/*.tar
+evidence/**/*.tar.gz

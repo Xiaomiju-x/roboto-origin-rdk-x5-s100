@@ -1,0 +1,54 @@
+--- a/CMake/external_json.cmake
++++ b/CMake/external_json.cmake
+@@ -10,6 +10,28 @@ function(get_nlohmann_json)
+     message( STATUS #CHECK_START
+         "Fetching nlohmann/json..." )
+     #list( APPEND CMAKE_MESSAGE_INDENT "  " )  # Indent outputs
++
++    # The X5 dependency build is intentionally offline.  When an audited local
++    # source tree is supplied, consume it directly so every CMake reconfigure
++    # is deterministic and does not depend on ExternalProject download stamps.
++    if( DEFINED ROBOTO_NLOHMANN_JSON_SOURCE AND
++        NOT "${ROBOTO_NLOHMANN_JSON_SOURCE}" STREQUAL "" )
++        if( NOT EXISTS "${ROBOTO_NLOHMANN_JSON_SOURCE}/CMakeLists.txt" )
++            message( FATAL_ERROR "Invalid ROBOTO_NLOHMANN_JSON_SOURCE: ${ROBOTO_NLOHMANN_JSON_SOURCE}" )
++        endif()
++        set( _roboto_json_copy "${CMAKE_BINARY_DIR}/third-party/json" )
++        execute_process( COMMAND "${CMAKE_COMMAND}" -E copy_directory
++                         "${ROBOTO_NLOHMANN_JSON_SOURCE}"
++                         "${_roboto_json_copy}"
++                         RESULT_VARIABLE copy_ret )
++        if( copy_ret )
++            message( FATAL_ERROR "Failed to stage audited nlohmann/json source" )
++        endif()
++        add_subdirectory( "${_roboto_json_copy}"
++                          "${_roboto_json_copy}/build" )
++        message( STATUS "Fetching nlohmann/json - Using audited local source" )
++        return()
++    endif()
+
+     # We want to clone the json repo and build it here, during configuration, so we can use it.
+     # But ExternalProject_add is limited in that it only does its magic during build.
+--- a/CMake/json-download.cmake.in
++++ b/CMake/json-download.cmake.in
+@@ -14,8 +14,8 @@ ExternalProject_Add(
+     # Adding detachedHead=false to avoid warnings like: "You are in 'detached HEAD' state..."
+     # 'remove_directory' is working but cound as deprecated from cmake version 3.17,
+     # Once we have a minimal version support of cmake 3.17, we can switch the command to rm -rF
+-    DOWNLOAD_COMMAND   "${CMAKE_COMMAND}" -E  remove_directory  "${CMAKE_BINARY_DIR}/third-party/json"
+-             COMMAND   git clone -c advice.detachedHead=false --branch v3.12.0 https://github.com/nlohmann/json.git --depth 1 json
++    DOWNLOAD_COMMAND   "${CMAKE_COMMAND}" -E remove_directory "${CMAKE_BINARY_DIR}/third-party/json"
++             COMMAND   "${CMAKE_COMMAND}" -E copy_directory "@ROBOTO_NLOHMANN_JSON_SOURCE@" "${CMAKE_BINARY_DIR}/third-party/json"
+     DOWNLOAD_DIR       "${CMAKE_BINARY_DIR}/third-party/"
+
+     # Override default steps with no action, we just want the clone step.
+--- a/CMake/install_config.cmake
++++ b/CMake/install_config.cmake
+@@ -48,4 +48,6 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/config/realsense2.pc"
+         DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
+ )
+
+-install(CODE "execute_process(COMMAND ldconfig)")
++if(NOT ROBOTO_SKIP_LDCONFIG)
++    install(CODE "execute_process(COMMAND ldconfig)")
++endif()

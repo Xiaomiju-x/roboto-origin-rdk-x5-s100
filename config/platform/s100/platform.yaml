@@ -1,0 +1,32 @@
+schema_version: 1
+platform: rdk_s100
+observed_at: "2026-08-29"
+board:
+  board_name: S100_RDK_V1P0
+  board_id: "0x6A86"
+  soc_name: S100
+  bpu: Nash-e
+  int8_tops: 80
+  cpu: 6x Cortex-A78AE
+  cpu_max_mhz: 1500
+  official_memory_gb: 12
+software:
+  ubuntu: "22.04.5"
+  rdk_os: "4.0.5-Beta"
+  kernel: 6.1.158-rt58-DR-4.0.5-2603191535-gf29a43-g94bc27
+  ros: humble
+  hobot_dnn: 4.0.5-20260211103825
+  hbm_runtime_python: 0.1.0.post1
+  ucp_runtime: 3.13.6
+execution:
+  project_root: /home/sunrise/workspaces/new_project/roboto_origin_s100
+  ros_domain_id: 42
+  port_min: 9140
+  port_max: 9199
+  control_output: forbidden
+  device_access: forbidden
+  system_install: forbidden
+  network_or_service_changes: forbidden
+rollback:
+  method: stop project processes and do not source the project overlay
+  modifies_system_overlay: false

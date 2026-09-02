@@ -1,0 +1,10 @@
+# Runtime requirements from the official Open3D 0.17.0 wheel metadata. The
+# Open3D binary wheel itself is locked separately in x5_dependency_lock.yaml.
+# NumPy is constrained to the version already validated on the X5 and avoids
+# the NumPy 2 ABI transition for this 2023 binary wheel.
+numpy==1.26.4
+dash==2.8.1
+plotly==5.13.1
+werkzeug==2.2.3
+nbformat==5.7.0
+configargparse==1.5.3

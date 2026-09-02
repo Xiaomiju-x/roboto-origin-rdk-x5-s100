@@ -1,0 +1,154 @@
+schema_version: 1
+target: rdk_x5
+locked_at: "2026-08-28"
+project_root: /home/sunrise/workspaces/new_project/roboto_origin
+
+policy:
+  install_scope: project_only
+  system_package_changes: forbidden
+  device_activation: forbidden
+  ros_domain_id: 42
+  note: >-
+    Archives are acquired and verified on the Windows host, then copied to the
+    X5. Builds and installs stay below deps/ in the project root.
+
+dependencies:
+  pcl_msgs:
+    source_url: https://github.com/ros-perception/pcl_msgs.git
+    ref: 1.0.0
+    commit: 16c4174b4903982c8b031672c8cfcdd16a7430dc
+    archive: pcl_msgs-16c4174.tar.gz
+    sha256: 79b0fc2bc45bcc469be025c8aac34d4024e3f9d09096c0b34b2de8714d8f7ff0
+    install_prefix: deps/install/ros_pcl
+    status: built
+
+  perception_pcl:
+    source_url: https://github.com/ros-perception/perception_pcl.git
+    ref: humble
+    commit: 67a5c2ba4c4de3ca21c5cd495812a01ced3fb69a
+    archive: perception_pcl-67a5c2b.tar.gz
+    sha256: 8ff6aed13d5ee45f2f1a4b5f5de738981134091e15892c6300dd2d06eedcfc74
+    install_prefix: deps/install/ros_pcl
+    status: built
+
+  sophus:
+    source_url: https://github.com/strasdat/Sophus.git
+    ref: 1.22.10
+    commit: de0f8d3d92bf776271e16de56d1803940ebccab9
+    archive: Sophus-1.22.10.tar.gz
+    sha256: cb5f05b3238aa86701f71cf6a74a25abe64206c3fd9d5f974a93bdd458d6a216
+    install_prefix: deps/install
+    status: built
+
+  livox_sdk2:
+    source_url: https://github.com/Livox-SDK/Livox-SDK2.git
+    ref: v1.3.1
+    commit: f5d9375f84efe2b15bc0a052d3e18482ed13adf4
+    archive: Livox-SDK2-v1.3.1.tar.gz
+    sha256: 8f925ca9babc0d04d472202d10110acf2d3f309d98cc0104df607500573dbe25
+    install_prefix: deps/install/livox_sdk2
+    status: built
+
+  livox_ros_driver2:
+    source_url: https://github.com/Livox-SDK/livox_ros_driver2.git
+    ref: 1.2.6
+    commit: 13eb05e4e6dd7a765b934d0c5fd6236676a57b49
+    archive: livox_ros_driver2-1.2.6.tar.gz
+    sha256: 74df029333a2e22807bcb4f640845d44cd0c6f722538d0ba5cf4870231f93b76
+    install_prefix: deps/install/livox_ros_driver2
+    status: built
+
+  librealsense:
+    source_url: https://github.com/IntelRealSense/librealsense/archive/refs/tags/v2.58.1.zip
+    ref: v2.58.1
+    commit: bf2778061d5dd29776e9aca8765f75852671760b
+    archive: librealsense-v2.58.1.zip
+    sha256: 092d5bdb11316df7ae8114dbf1d756f9596e6d0b7f6022b5bbfa87343477ac31
+    install_prefix: deps/install/librealsense
+    patch: patches/librealsense-use-local-json.patch
+    status: built
+
+  nlohmann_json:
+    source_url: https://github.com/nlohmann/json/archive/refs/tags/v3.12.0.zip
+    ref: v3.12.0
+    commit: 65ee68451d8eb2b5f3a30b410476ab83deb3289b
+    archive: nlohmann-json-v3.12.0.zip
+    sha256: 34660b5e9a407195d55e8da705ed26cc6d175ce5a6b1fb957e701fb4d5b04022
+    role: librealsense_build_only
+    status: used_for_build
+
+  realsense_ros:
+    source_url: https://github.com/IntelRealSense/realsense-ros.git
+    ref: official_vendored_pin
+    commit: 926f37e01f4f53186fc1817aba36713442d98b3e
+    source_path: src/official/roboparty_deploy/src/camera/thirdparty/realsense-ros
+    install_prefix: deps/install/realsense_ros
+    status: built
+
+  open3d:
+    source_url: https://github.com/isl-org/Open3D.git
+    ref: v0.17.0
+    commit: 9238339b99afea902fb2e4a5c614699fd97f6b02
+    source_archive: Open3D-v0.17.0.zip
+    source_archive_sha256: d3a6bd620f1f7770f45f20aee413d5995b5944ad1ba7cd8e50b7e56ecb9e7548
+    wheel_url: https://files.pythonhosted.org/packages/e6/22/ff77db48df8bd1afe122d1ee19be472efbc2a559ed9729ea460a03d2ba2c/open3d-0.17.0-cp310-cp310-manylinux_2_27_aarch64.whl
+    wheel: open3d-0.17.0-cp310-cp310-manylinux_2_27_aarch64.whl
+    wheel_sha256: e28e515f4850380ab4f25842bce5f3d4c63b5565f9f8d2df141059b62250ff9e
+    runtime_lock: requirements/open3d-0.17.0-aarch64.lock
+    runtime_bundle: open3d-0.17.0-pydeps-cp310-aarch64.tar.gz
+    runtime_bundle_sha256: 140fdc45255ea02e741e1510b07e6bf25df618ca538c6918cc7b6174ac773ff7
+    install_prefix: deps/venv/open3d
+    status: built
+    note: >-
+      The exact official wheel targets CPython 3.10, ARM64 and glibc 2.27+;
+      the X5 reports CPython 3.10, aarch64 and glibc 2.35.
+
+  navigation_offline_python:
+    packages:
+      pillow: 11.3.0
+      scipy: 1.15.3
+    runtime_lock: requirements/navigation-offline-x5-aarch64.lock
+    runtime_bundle: navigation-offline-x5-pydeps-cp310-aarch64.tar.gz
+    runtime_bundle_sha256: fc3643b39af7e6f02844f254bed944b374d4aaf71c0d847447c02ac75f309fbb
+    install_prefix: deps/venv/open3d
+    status: built
+    note: >-
+      The ARM64 binary packages are installed into the same project-only
+      Python environment as Open3D. No system Python packages are modified.
+
+  official_navigation:
+    source_url: https://github.com/roboparty/roboparty_navigation.git
+    commit: d6ab9913599672af78422eb2e89a16c0460a8009
+    submodules:
+      nlink_parser_ros2: 1cc0a14e08d3ab1913056613eefbc6415d512698
+      robots_localization_ros2: dc4375a707dc4546ffad3a631f4e0d7c211c065b
+    staged_source: deps/src/roboparty_navigation-x5
+    patch: patches/roboparty-navigation-x5-build.patch
+    patch_sha256: a1e362f4c18a2bc8f71b9d33a57d66dfed2e56c686d1cf2a81ad89944d10ff93
+    install_prefix: deps/install/official_navigation
+    packages:
+      - nlink_message
+      - serial
+      - nlink_parser_ros2
+      - nav2_localization_adapter
+      - robots_localization
+    status: built
+    runtime_execution: not_run
+
+  official_deploy:
+    source_url: https://github.com/roboparty/roboparty_deploy.git
+    commit: a8a0f1557cc5d085234b8bac248a8f543342f531
+    staged_source: deps/src/roboparty_deploy-x5
+    patch: patches/roboparty-deploy-x5-build.patch
+    patch_sha256: e020bf6e568464789ebd1374db3d272e8fddfda295088c40bdc455afcd697ba2
+    install_prefix: deps/install/official_deploy
+    packages:
+      - camera
+      - roboparty_imu
+      - roboparty_motors
+      - roboparty_inference
+    bundled_inputs:
+      onnxruntime_linux_aarch64_1_21_0_sha256: 4508084bde1232ee1ab4b6fad2155be0ea2ccab1c1aae9910ddb3fb68a60805e
+      yaml_cpp_0_9_0_sha256: 298593d9c440fd9034b8b193d96318b76d49bc97c6ceadb7b0836edf0b6d7539
+    status: built
+    runtime_execution: not_run

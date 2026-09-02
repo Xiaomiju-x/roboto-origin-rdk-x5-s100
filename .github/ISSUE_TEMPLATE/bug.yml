@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible defect without sensitive or restricted data
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include credentials, private network details, device serials, or non-redistributable artifacts."
+  - type: dropdown
+    id: target
+    attributes:
+      label: Target
+      options:
+        - Host
+        - RDK X5
+        - RDK S100
+        - Documentation or CI
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Repository revision
+      placeholder: commit SHA or release
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS and relevant ROS/UCP/HBRT/runtime versions; redact identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Minimal command, input contract, expected result, and actual result.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety boundary
+      options:
+        - label: No real actuator motion or control-channel access is required to reproduce this issue.
+          required: true
+        - label: I removed credentials, private network data, personal paths, and restricted artifacts.
+          required: true

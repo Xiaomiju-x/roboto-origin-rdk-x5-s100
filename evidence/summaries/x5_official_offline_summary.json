@@ -1,0 +1,205 @@
+{
+  "evidence": {
+    "environment": {
+      "bytes": 3101,
+      "path": "evidence/host/training/environment_20260829T0040+0800.json",
+      "sha256": "e942caf904f5770bd7a682ad372840223b85387b06f926f3328119c31d71e061"
+    },
+    "host_onnx_cuda": {
+      "bytes": 21971,
+      "path": "evidence/host/onnx/onnx_backend_20260828T235919+0800.json",
+      "sha256": "57e30cb0e0257eef62fbaaa1418df1673a7cda1670c2d25131887705063d3c9f"
+    },
+    "task_registry": {
+      "bytes": 11930,
+      "path": "evidence/host/training/official_task_registry_20260829T0042+0800.json",
+      "sha256": "ae67dabda668995bebd63ce1100e3e7f770b358569fdb658ade9d3f83aa1931c"
+    },
+    "x5_depth": {
+      "bytes": 5143,
+      "path": "evidence/x5/depth_pipeline/2026-08-29T00-36-53+08-00/result.json",
+      "sha256": "d9fbdd9cb8545936a07e2740d1c6017f2731e9a0e8fd6a4031f9351e175e6785"
+    },
+    "x5_host_depth_parity": {
+      "bytes": 1348,
+      "path": "evidence/host/vision/x5_host_depth_parity_20260829T0038+0800.json",
+      "sha256": "37a1de3ee37540cb72dbb9e661008cb884b61c859e726a088e32b468bc72e644"
+    },
+    "x5_host_onnx_parity": {
+      "bytes": 6606,
+      "path": "evidence/host/onnx/x5_host_parity_20260829T001003+0800.json",
+      "sha256": "afb8bee1303f40cd269891109b4bcd1330759c53767dd63d1a7d70d1c9ef12fb"
+    },
+    "x5_navigation_plan": {
+      "bytes": 1329,
+      "path": "evidence/x5/navigation_plan/2026-08-29T00-32-32+08-00/result.json",
+      "sha256": "c14e8341a909dc58863ade7f5c7b88ce432dd7578fe4b51b19d98c0aabf10e22"
+    },
+    "x5_onnx": {
+      "bytes": 8943,
+      "path": "evidence/x5/onnx_runtime/onnx_synthetic_deterministic_20260829T000810+0800.json",
+      "sha256": "b3939411b27469bc0f3eb8c78d0412e7e97c3e5d64e7d37f663c2d18fb056ccc"
+    }
+  },
+  "gates": {
+    "O0": {
+      "name": "source_and_contract",
+      "status": "PASS"
+    },
+    "O1": {
+      "name": "environment_import",
+      "status": "PASS"
+    },
+    "O2": {
+      "name": "simulation_reset_step",
+      "status": "PASS"
+    },
+    "O3": {
+      "name": "training_smoke",
+      "status": "PASS"
+    },
+    "O4": {
+      "name": "export",
+      "status": "PASS"
+    },
+    "O5": {
+      "name": "finite_sim2sim",
+      "status": "PASS"
+    },
+    "O6": {
+      "name": "x5_offline_deployment",
+      "status": "PASS"
+    }
+  },
+  "isaac": {
+    "complete_eight_task_acceptance": true,
+    "environment_status": "BLOCKED_EULA",
+    "latest_acceptance": {
+      "bytes": 42960,
+      "path": "evidence/host/isaac/20260829T075941+0800/aggregate.json",
+      "sha256": "b32a76041f6ace1223f7ae4c1c914f13fbac0e526fc5b536639371589e844d27"
+    }
+  },
+  "mujoco": {
+    "amp_cpu": {
+      "evidence": {
+        "bytes": 1872,
+        "path": "evidence/host/mujoco/amp_cpu_20260829T000519+0800/result.json",
+        "sha256": "0312172fa6547445530d353252825168d7f9eb56ce78a8e4c5e2e3a80a492e2a"
+      },
+      "status": "PASS"
+    },
+    "attn_enc_cpu": {
+      "evidence": {
+        "bytes": 1895,
+        "path": "evidence/host/mujoco/attn_enc_cpu_20260829T000527+0800/result.json",
+        "sha256": "6d40868e6ad55c2f9769faf1f093ee10e137677da15d6a8bec2412037fdb6fbf"
+      },
+      "status": "PASS"
+    },
+    "dance0_cpu": {
+      "evidence": {
+        "bytes": 1871,
+        "path": "evidence/host/mujoco/dance0_cpu_20260829T000638+0800/result.json",
+        "sha256": "344412a707b29d71588f63bf05a8e7c35582d7e0c5c27a6343d971519cc5905f"
+      },
+      "status": "PASS"
+    },
+    "dance1_cpu": {
+      "evidence": {
+        "bytes": 1869,
+        "path": "evidence/host/mujoco/dance1_cpu_20260829T000643+0800/result.json",
+        "sha256": "e9cba1b11307fb1c7a24abec7980cc2a96a4d6ee9761d57437df90877ad4ab94"
+      },
+      "status": "PASS"
+    },
+    "flat_cpu": {
+      "evidence": {
+        "bytes": 1859,
+        "path": "evidence/host/mujoco/flat_cpu_20260829T000445+0800/result.json",
+        "sha256": "0aa1e8c9aef282c80a86672d3790c7493242d804ec1083d68aa0482148be3496"
+      },
+      "status": "PASS"
+    },
+    "getup_cpu": {
+      "evidence": {
+        "bytes": 1880,
+        "path": "evidence/host/mujoco/getup_cpu_20260829T000649+0800/result.json",
+        "sha256": "e5eab6131d886d858c6a0ac0659993a1453fa90b0a9208da24a28de0a4093630"
+      },
+      "status": "PASS"
+    },
+    "interrupt_cpu": {
+      "evidence": {
+        "bytes": 1893,
+        "path": "evidence/host/mujoco/interrupt_cpu_20260829T000551+0800/result.json",
+        "sha256": "05c8ffd3e35771e3dff9baead8ba0ec7dbf3c7cabec910937f3b5b01c92b20b2"
+      },
+      "status": "PASS"
+    },
+    "parkour_plane_cpu": {
+      "evidence": {
+        "bytes": 2084,
+        "path": "evidence/host/mujoco/parkour_plane_cpu_20260829T000105+0800/result.json",
+        "sha256": "80ef3b3ae04d25f6468459663065bc742ffebe68c306714176737407d5480a98"
+      },
+      "status": "PASS"
+    },
+    "parkour_stairs_cpu": {
+      "evidence": {
+        "bytes": 2097,
+        "path": "evidence/host/mujoco/parkour_stairs_cpu_20260829T000135+0800/result.json",
+        "sha256": "006dd698427308c61c92b9a5a2b6e4a2f100d4a11dadc3bb6fe0977405be4e15"
+      },
+      "status": "PASS"
+    },
+    "parkour_stairs_cuda": {
+      "evidence": {
+        "bytes": 2161,
+        "path": "evidence/host/mujoco/parkour_stairs_cuda_20260829T000159+0800/result.json",
+        "sha256": "9165911e83195157855dccd879c39b9d25f97de749f26ffdf196af15e91cb91e"
+      },
+      "status": "PASS"
+    },
+    "rough_cpu": {
+      "evidence": {
+        "bytes": 1869,
+        "path": "evidence/host/mujoco/rough_cpu_20260829T000507+0800/result.json",
+        "sha256": "bd545f7c3bf4051b84c84f7e445e49b45fb2d14d3da3ce2dcc9777c7f1da49aa"
+      },
+      "status": "PASS"
+    },
+    "wave_cpu": {
+      "evidence": {
+        "bytes": 1866,
+        "path": "evidence/host/mujoco/wave_cpu_20260829T000632+0800/result.json",
+        "sha256": "932b0e6d204b35012824a1086b82d7dfe5c70575fec4aac2361f2833416bb6bc"
+      },
+      "status": "PASS"
+    }
+  },
+  "observed_at": "2026-08-29T08:23:25+08:00",
+  "overall": "PASS",
+  "s100_gate_open": false,
+  "s100_gate_reason": "X5 official baseline passed; XRD/frontier X5 upgrade acceptance is still required",
+  "schema_version": 1,
+  "scope": "official RoboParty algorithms on laptop and X5 offline only; no robot or peripherals",
+  "upgrade_gate_open": true,
+  "x5": {
+    "components": {
+      "host_onnx_cuda": "PASS",
+      "x5_depth": "PASS",
+      "x5_host_depth_parity": "PASS",
+      "x5_host_onnx_parity": "PASS",
+      "x5_navigation_plan": "PASS",
+      "x5_onnx": "PASS"
+    },
+    "localization_evidence": {
+      "bytes": 1688,
+      "path": "evidence/x5/localization_synthetic/2026-08-29T02-00-12+08-00/result.json",
+      "sha256": "b4a2201f3e0f5f10a3c53edcdf557957df760c230e849894a20f876ca2db9862"
+    },
+    "localization_graceful_shutdown": true,
+    "localization_status": "PASS"
+  }
+}

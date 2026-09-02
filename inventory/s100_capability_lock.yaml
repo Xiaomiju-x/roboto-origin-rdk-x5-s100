@@ -1,0 +1,29 @@
+schema_version: 1
+locked_at: "2026-08-29"
+target: rdk_s100_nash_e
+source_evidence: evidence/s100/d0_readonly_snapshot_20260829.json
+identity:
+  board_name: S100_RDK_V1P0
+  soc_name: S100
+  product: RDK S100
+  bpu: Nash-e
+  int8_tops: 80
+  official_memory_gb: 12
+runtime:
+  architecture: aarch64
+  ubuntu: "22.04.5"
+  rdk_os: "4.0.5-Beta"
+  kernel: 6.1.158-rt58-DR-4.0.5-2603191535-gf29a43-g94bc27
+  ros_distro: humble
+  hobot_dnn: 4.0.5-20260211103825
+  hbm_runtime_python: 0.1.0.post1
+  ucp_and_hrt_model_exec: 3.13.6
+  on_board_model_compiler: absent
+constraints:
+  project_only_prefix: /home/sunrise/workspaces/new_project/roboto_origin_s100
+  ros_domain_id: 42
+  allowed_ports: 9140-9199
+  no_robot_or_peripheral: true
+  no_system_package_changes: true
+  no_network_or_service_changes: true
+  benchmark_idle_gate: pending_recheck

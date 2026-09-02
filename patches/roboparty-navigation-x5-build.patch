@@ -1,0 +1,32 @@
+--- a/robots_localization_ros2/CMakeLists.txt
++++ b/robots_localization_ros2/CMakeLists.txt
+@@ -93,6 +93,7 @@ find_package(PCL REQUIRED COMPONENTS common io)
+ find_package(PCL REQUIRED COMPONENTS common io)
+ find_package(Sophus REQUIRED)
+ find_package(Ceres REQUIRED)
++find_package(Boost REQUIRED COMPONENTS thread system)
+
+ message(Eigen: ${EIGEN3_INCLUDE_DIR})
+
+@@ -125,9 +126,9 @@ add_library(ikd_Tree SHARED include/ikd-Tree/ikd_Tree.cpp)
+ add_library(scan_aligner SHARED src/scan_aligner.cpp)
+ add_library(imu_processor SHARED src/imu_processor.cpp)
+ add_library(lidar_processor SHARED src/lidar_processor.cpp)
+-target_link_libraries(imu_processor fmt::fmt)
++target_link_libraries(imu_processor fmt::fmt Sophus::Sophus Ceres::ceres ikd_Tree scan_aligner)
+ ament_target_dependencies(imu_processor ${ROS2_DEPENDENCIES})
+-target_link_libraries(scan_aligner fmt::fmt)
++target_link_libraries(scan_aligner fmt::fmt Sophus::Sophus Ceres::ceres ikd_Tree)
+ ament_target_dependencies(scan_aligner ${ROS2_DEPENDENCIES})
+ target_link_libraries(lidar_processor ${PCL_LIBRARIES})
+ ament_target_dependencies(lidar_processor ${ROS2_DEPENDENCIES} livox_ros_driver2)
+--- a/robots_localization_ros2/src/monitor_module/CMakeLists.txt
++++ b/robots_localization_ros2/src/monitor_module/CMakeLists.txt
+@@ -2,6 +2,6 @@
+ AUX_SOURCE_DIRECTORY(. DIR_MONITOR)
+ add_library(monitor SHARED  ${DIR_MONITOR})
+ target_include_directories(monitor PUBLIC .)
+ target_link_libraries(monitor
+-    ${Boost_LIBRARIES}
++    Boost::thread Boost::system
+     )

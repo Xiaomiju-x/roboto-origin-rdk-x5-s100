@@ -1,0 +1,58 @@
+schema_version: 1
+observed_at: "2026-08-28"
+policy:
+  baseline: "Use wrapper submodule pins for reproduction; treat standalone heads as upgrade candidates."
+  upstream_usage: "Read-only reference; do not modify vendored checkouts."
+
+repositories:
+  roboto_origin:
+    url: https://github.com/Roboparty/roboto_origin.git
+    observed_head: c71fd9287d28104dca111d7c25b908fa3f45f8e4
+    local_checkout: null
+    note: "1.8 GB aggregation repository deliberately not cloned; component repositories are sufficient for P0."
+  roboparty_deploy:
+    url: https://github.com/Roboparty/roboparty_deploy.git
+    baseline_pin: a8a0f1557cc5d085234b8bac248a8f543342f531
+    observed_head: a8a0f1557cc5d085234b8bac248a8f543342f531
+    local_checkout: upstream/roboparty_deploy
+    submodules:
+      roboparty_camera: 7434a8dbd36e97466a96e85fa8d088f528a2e8dc
+      realsense_ros: 926f37e01f4f53186fc1817aba36713442d98b3e
+      roboparty_imu: 7a6e6d2eeef8ff3513cee54a8fa833773efd42f3
+      roboparty_inference: ac448b12c382e3fab42c0e8467a6943987223c4b
+      cnpy: 4e8810b1a8637695171ed346ce68f6984e585ef4
+      roboparty_motors: 118e569aa89ea0dff23219709320523526a6e8df
+      create_ap: 637a76902b12ad5fc61c3695bae646fbae11cf6f
+  roboparty_train:
+    url: https://github.com/Roboparty/roboparty_train.git
+    baseline_pin: 92008a6317d6d0efe8b58abc2fb3c630c75992c0
+    observed_head: 92008a6317d6d0efe8b58abc2fb3c630c75992c0
+    local_checkout: upstream/roboparty_train
+    submodules:
+      robolab: 6b1c3d9988497c8961dcba77892de32edc1770e1
+      rsl_rl: 6986d4d1b9fbab96fb61d51f07de419bc95432f1
+      rpo_description_nested: aa332a3c0a3c8a9d77e6df73c4c9698af0678b32
+  roboparty_navigation:
+    url: https://github.com/Roboparty/roboparty_navigation.git
+    baseline_pin: d6ab9913599672af78422eb2e89a16c0460a8009
+    observed_head: d6ab9913599672af78422eb2e89a16c0460a8009
+    local_checkout: upstream/roboparty_navigation
+    submodules:
+      nlink_parser_ros2: 1cc0a14e08d3ab1913056613eefbc6415d512698
+      robots_localization_ros2: dc4375a707dc4546ffad3a631f4e0d7c211c065b
+  rpo_description:
+    url: https://github.com/Roboparty/rpo_description.git
+    observed_head: 37aac9ca665e92731444a1618320078e7ba21569
+    local_checkout: upstream/rpo_description
+  GMR:
+    url: https://github.com/Roboparty/GMR.git
+    observed_head: f7bfaead0d0b896e6b74a64bc6948ca8b09d420b
+    local_checkout: upstream/GMR
+
+standalone_upgrade_candidates:
+  roboparty_camera: 3d3ba6eb6c2decb035199878fd174f90e3c7ea62
+  roboparty_inference: e293f7d76f1ffe31c8ee8f0891a6d8791187f72c
+  roboparty_motors: d1eb049ea8099d963e7f69dcc9d85b9fb3286b11
+  roboparty_imu: 7a6e6d2eeef8ff3513cee54a8fa833773efd42f3
+  roboparty_firmware: f06f409f0c627afa05ea42f8cbf0f8ce017621a1
+  rdk: fcaa9a9cc9dea14bb421ef2f006c63c7da270f93

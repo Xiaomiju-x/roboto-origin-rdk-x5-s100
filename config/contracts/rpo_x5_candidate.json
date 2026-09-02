@@ -1,0 +1,993 @@
+{
+  "allowed_use": [
+    "static comparison",
+    "offline tests",
+    "physical evidence collection planning"
+  ],
+  "artifact": "RPO X5 joint contract candidate",
+  "deployable": false,
+  "deployment_guard": "MUST_NOT_BE_LOADED_BY_DRIVERS_OR POLICY NODES",
+  "intersection_note": "The intersection is a static diagnostic only, not a safe motion limit.",
+  "joint_count": 23,
+  "joints": [
+    {
+      "index": 0,
+      "intersection_valid": true,
+      "kd_reference_only": 3.3,
+      "kp_reference_only": 100.0,
+      "motor_id": 1,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "left_thigh_yaw_joint",
+      "official_interface": "can0",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -1.0,
+          0.2
+        ],
+        "canonical_urdf": [
+          -1.0,
+          0.2
+        ],
+        "gmr_mjcf": [
+          -1.0,
+          0.2
+        ],
+        "gmr_urdf": [
+          -1.0,
+          0.2
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.0,
+        0.2
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 1,
+      "intersection_valid": true,
+      "kd_reference_only": 3.3,
+      "kp_reference_only": 100.0,
+      "motor_id": 2,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "left_thigh_roll_joint",
+      "official_interface": "can0",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.2,
+          2.0
+        ],
+        "canonical_urdf": [
+          -0.2,
+          1.0
+        ],
+        "gmr_mjcf": [
+          -0.2,
+          2.0
+        ],
+        "gmr_urdf": [
+          -0.2,
+          1.0
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.2,
+        1.0
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 2,
+      "intersection_valid": true,
+      "kd_reference_only": 3.3,
+      "kp_reference_only": 100.0,
+      "motor_id": 3,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "left_thigh_pitch_joint",
+      "official_interface": "can0",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -2.5,
+          0.8
+        ],
+        "canonical_urdf": [
+          -2.094,
+          0.7854
+        ],
+        "gmr_mjcf": [
+          -2.5,
+          0.8
+        ],
+        "gmr_urdf": [
+          -1.0,
+          1.0
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.0,
+        0.7854
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 3,
+      "intersection_valid": true,
+      "kd_reference_only": 5.0,
+      "kp_reference_only": 150.0,
+      "motor_id": 4,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "left_knee_joint",
+      "official_interface": "can0",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          0.0,
+          2.5
+        ],
+        "canonical_urdf": [
+          -0.2,
+          2.5
+        ],
+        "gmr_mjcf": [
+          0.0,
+          2.5
+        ],
+        "gmr_urdf": [
+          -0.2,
+          2.5
+        ]
+      },
+      "static_source_intersection_rad": [
+        0.0,
+        2.5
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 4,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 5,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_ankle_pitch_joint",
+      "official_interface": "can0",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.7,
+          0.7
+        ],
+        "canonical_urdf": [
+          -0.6,
+          0.6
+        ],
+        "gmr_mjcf": [
+          -0.6,
+          0.6
+        ],
+        "gmr_urdf": [
+          -0.6,
+          0.6
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.6,
+        0.6
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 5,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 6,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_ankle_roll_joint",
+      "official_interface": "can0",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.5,
+          0.5
+        ],
+        "canonical_urdf": [
+          -0.5,
+          0.5
+        ],
+        "gmr_mjcf": [
+          -0.5,
+          0.5
+        ],
+        "gmr_urdf": [
+          -0.5,
+          0.5
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.5,
+        0.5
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 6,
+      "intersection_valid": true,
+      "kd_reference_only": 3.3,
+      "kp_reference_only": 100.0,
+      "motor_id": 7,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "right_thigh_yaw_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.2,
+          1.0
+        ],
+        "canonical_urdf": [
+          -0.2,
+          1.0
+        ],
+        "gmr_mjcf": [
+          -0.2,
+          1.0
+        ],
+        "gmr_urdf": [
+          -0.2,
+          1.0
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.2,
+        1.0
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 7,
+      "intersection_valid": true,
+      "kd_reference_only": 3.3,
+      "kp_reference_only": 100.0,
+      "motor_id": 8,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "right_thigh_roll_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -2.0,
+          0.2
+        ],
+        "canonical_urdf": [
+          -1.0,
+          0.2
+        ],
+        "gmr_mjcf": [
+          -2.0,
+          0.2
+        ],
+        "gmr_urdf": [
+          -1.0,
+          0.2
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.0,
+        0.2
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 8,
+      "intersection_valid": true,
+      "kd_reference_only": 3.3,
+      "kp_reference_only": 100.0,
+      "motor_id": 9,
+      "motor_model": 1,
+      "motor_sign": -1.0,
+      "name": "right_thigh_pitch_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -2.5,
+          0.8
+        ],
+        "canonical_urdf": [
+          -2.094,
+          0.7854
+        ],
+        "gmr_mjcf": [
+          -2.5,
+          0.8
+        ],
+        "gmr_urdf": [
+          -1.0,
+          1.0
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.0,
+        0.7854
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 9,
+      "intersection_valid": true,
+      "kd_reference_only": 5.0,
+      "kp_reference_only": 150.0,
+      "motor_id": 10,
+      "motor_model": 1,
+      "motor_sign": -1.0,
+      "name": "right_knee_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          0.0,
+          2.5
+        ],
+        "canonical_urdf": [
+          -0.2,
+          2.5
+        ],
+        "gmr_mjcf": [
+          0.0,
+          2.5
+        ],
+        "gmr_urdf": [
+          -0.2,
+          2.5
+        ]
+      },
+      "static_source_intersection_rad": [
+        0.0,
+        2.5
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 10,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 11,
+      "motor_model": 0,
+      "motor_sign": -1.0,
+      "name": "right_ankle_pitch_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.7,
+          0.7
+        ],
+        "canonical_urdf": [
+          -0.6,
+          0.6
+        ],
+        "gmr_mjcf": [
+          -0.6,
+          0.6
+        ],
+        "gmr_urdf": [
+          -0.6,
+          0.6
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.6,
+        0.6
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 11,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 12,
+      "motor_model": 0,
+      "motor_sign": -1.0,
+      "name": "right_ankle_roll_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.5,
+          0.5
+        ],
+        "canonical_urdf": [
+          -0.5,
+          0.5
+        ],
+        "gmr_mjcf": [
+          -0.5,
+          0.5
+        ],
+        "gmr_urdf": [
+          -0.5,
+          0.5
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.5,
+        0.5
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 12,
+      "intersection_valid": true,
+      "kd_reference_only": 5.0,
+      "kp_reference_only": 150.0,
+      "motor_id": 13,
+      "motor_model": 1,
+      "motor_sign": 1.0,
+      "name": "torso_joint",
+      "official_interface": "can1",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -2.62,
+          2.62
+        ],
+        "canonical_urdf": [
+          -3.14,
+          3.14
+        ],
+        "gmr_mjcf": [
+          -2.62,
+          2.62
+        ],
+        "gmr_urdf": [
+          -3.14,
+          3.14
+        ]
+      },
+      "static_source_intersection_rad": [
+        -2.62,
+        2.62
+      ],
+      "zero_offset_conflict": true,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 2.093,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 13,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 14,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_arm_pitch_joint",
+      "official_interface": "can2",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -3.14,
+          2.57
+        ],
+        "canonical_urdf": [
+          -3.14,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -3.14,
+          1.57
+        ],
+        "gmr_urdf": [
+          -3.14,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -3.14,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 14,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 15,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_arm_roll_joint",
+      "official_interface": "can2",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -0.25,
+          3.14
+        ],
+        "canonical_urdf": [
+          -0.25,
+          3.14
+        ],
+        "gmr_mjcf": [
+          -0.25,
+          3.14
+        ],
+        "gmr_urdf": [
+          -0.25,
+          3.14
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.25,
+        3.14
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 15,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 16,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_arm_yaw_joint",
+      "official_interface": "can2",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -2.6,
+          2.6
+        ],
+        "canonical_urdf": [
+          -1.57,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -2.6,
+          2.6
+        ],
+        "gmr_urdf": [
+          -1.57,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.57,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 16,
+      "intersection_valid": true,
+      "kd_reference_only": 1.5,
+      "kp_reference_only": 30.0,
+      "motor_id": 17,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_elbow_pitch_joint",
+      "official_interface": "can2",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -1.0,
+          3.57
+        ],
+        "canonical_urdf": [
+          -0.6,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -1.0,
+          1.57
+        ],
+        "gmr_urdf": [
+          -0.6,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.6,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 17,
+      "intersection_valid": true,
+      "kd_reference_only": 1.0,
+      "kp_reference_only": 20.0,
+      "motor_id": 18,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "left_elbow_yaw_joint",
+      "official_interface": "can2",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -1.57,
+          1.57
+        ],
+        "canonical_urdf": [
+          -1.57,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -1.57,
+          1.57
+        ],
+        "gmr_urdf": [
+          -1.57,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.57,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 18,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 19,
+      "motor_model": 0,
+      "motor_sign": -1.0,
+      "name": "right_arm_pitch_joint",
+      "official_interface": "can3",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -3.14,
+          2.57
+        ],
+        "canonical_urdf": [
+          -3.14,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -3.14,
+          1.57
+        ],
+        "gmr_urdf": [
+          -3.14,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -3.14,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 19,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 20,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "right_arm_roll_joint",
+      "official_interface": "can3",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -3.14,
+          0.25
+        ],
+        "canonical_urdf": [
+          -3.14,
+          0.25
+        ],
+        "gmr_mjcf": [
+          -3.14,
+          0.25
+        ],
+        "gmr_urdf": [
+          -3.14,
+          0.25
+        ]
+      },
+      "static_source_intersection_rad": [
+        -3.14,
+        0.25
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 20,
+      "intersection_valid": true,
+      "kd_reference_only": 2.0,
+      "kp_reference_only": 40.0,
+      "motor_id": 21,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "right_arm_yaw_joint",
+      "official_interface": "can3",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -2.6,
+          2.6
+        ],
+        "canonical_urdf": [
+          -1.57,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -2.6,
+          2.6
+        ],
+        "gmr_urdf": [
+          -1.57,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.57,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 21,
+      "intersection_valid": true,
+      "kd_reference_only": 1.5,
+      "kp_reference_only": 30.0,
+      "motor_id": 22,
+      "motor_model": 0,
+      "motor_sign": -1.0,
+      "name": "right_elbow_pitch_joint",
+      "official_interface": "can3",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": true,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -1.0,
+          3.57
+        ],
+        "canonical_urdf": [
+          -0.6,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -1.0,
+          1.57
+        ],
+        "gmr_urdf": [
+          -0.6,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -0.6,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    },
+    {
+      "index": 22,
+      "intersection_valid": true,
+      "kd_reference_only": 1.0,
+      "kp_reference_only": 20.0,
+      "motor_id": 23,
+      "motor_model": 0,
+      "motor_sign": 1.0,
+      "name": "right_elbow_yaw_joint",
+      "official_interface": "can3",
+      "physical_validation": "NOT_RUN",
+      "published_limit_conflict": false,
+      "published_limits_rad": {
+        "canonical_mjcf": [
+          -1.57,
+          1.57
+        ],
+        "canonical_urdf": [
+          -1.57,
+          1.57
+        ],
+        "gmr_mjcf": [
+          -1.57,
+          1.57
+        ],
+        "gmr_urdf": [
+          -1.57,
+          1.57
+        ]
+      },
+      "static_source_intersection_rad": [
+        -1.57,
+        1.57
+      ],
+      "zero_offset_conflict": false,
+      "zero_offsets_rad": {
+        "motion_player_yaml": 0.0,
+        "runtime_robot_yaml": 0.0,
+        "set_zero_template": 0.0
+      }
+    }
+  ],
+  "observed_x5_bus_state": "only can0 enumerated and DOWN; official can1-can3 not observed",
+  "official_bus_partition": {
+    "counts": [
+      6,
+      7,
+      5,
+      5
+    ],
+    "interfaces": [
+      "can0",
+      "can1",
+      "can2",
+      "can3"
+    ]
+  },
+  "published_limit_conflict_count": 15,
+  "schema_version": 1,
+  "scope": "project-owned synthesis of pinned public sources; no physical authority established",
+  "source_sha256": {
+    "canonical_mjcf": "a6850d04365a78b14ca9f7ff4d0c526494faf16c8d607e74175e211b48409cc8",
+    "canonical_urdf": "27493b44dd5adeda87934235a3ba3389da8f3ee903c19be33344740921f99b9a",
+    "gmr_mjcf": "d4c9567805dec7f7c3a81345e9b99200b06c14ad36f4c1a812333b30b43d8f59",
+    "gmr_urdf": "409ecb970fdffe5f639ef520e58fac0467b2dabab6f96f79a9e7ad4599cceb3d",
+    "motion_player_yaml": "67a46458e34a0c3536be5915147c7a5ba534998bafce79c7691f325262a40059",
+    "runtime_robot_yaml": "167c58e9d7b4fe6baf0723be48edea9282791523c031020c9eb8d37d1c8fdd30",
+    "set_zero_yaml": "135425101a19ee71af908deff9190d91268fe78b2f78dbedc74cb47b2f128829",
+    "x5_dependency_probe": "a7447e1478545933b265aab6b4ee62752f9095c687c1fc9b0886437747d3163c"
+  },
+  "unresolved_gates": [
+    "mechanical joint ranges and hard stops not physically verified",
+    "motor identity, firmware limits, sign, and zero calibration not verified",
+    "torso runtime zero offset conflicts with motion/set-zero templates",
+    "official four-interface CAN topology is not present",
+    "emergency stop, support fixture, wiring, polarity, termination, IDs, and bitrate not verified"
+  ],
+  "zero_offset_conflict_count": 1
+}

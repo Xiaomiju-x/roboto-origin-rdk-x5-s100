@@ -1,0 +1,68 @@
+schema_version: 1
+locked_at: "2026-08-29T19:02:00+08:00"
+scope: "S100 single-board offline frontier audit; no robot, sensors, device access, or control output"
+
+repositories:
+  - id: F1
+    name: rdk_model_zoo
+    url: https://github.com/D-Robotics/rdk_model_zoo.git
+    branch: rdk_s
+    commit: 872748d563c99a490733760c54865b2a70f3499f
+    license: Apache-2.0
+    status: PASS_DEPLOYED
+  - id: F2
+    name: mono_edgetam
+    url: https://github.com/D-Robotics/mono_edgetam.git
+    commit: 0167c87ad8010d20dfa7ac764eff3ff1b8e90233
+    license: Apache-2.0
+    license_blob_sha1: 261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64
+    status: BLOCKED_SYSTEM_DEPENDENCY
+  - id: F3
+    name: hobot_stereonet
+    url: https://github.com/D-Robotics/hobot_stereonet.git
+    commit: 034c2274188fd21270f8d57f47cb65bdc5bdc300
+    license: Apache-2.0
+    license_blob_sha1: d645695673349e3947e8e5ae42332d0ac3164cd7
+    status: BLOCKED_SYSTEM_DEPENDENCY
+  - id: F3_REFERENCE
+    name: hobot_centerpoint
+    url: https://github.com/D-Robotics/hobot_centerpoint.git
+    commit: 56f2fdf7aa0edeac8bb7db715d54ee49b6008fbd
+    license: Apache-2.0
+    license_blob_sha1: d645695673349e3947e8e5ae42332d0ac3164cd7
+    status: BLOCKED_SYSTEM_DEPENDENCY
+  - id: F4
+    name: walk-these-ways
+    url: https://github.com/Improbable-AI/walk-these-ways.git
+    commit: 0e7236bdc81ce855cbe3d70345a7899452bdeb1c
+    status: NOT_APPLICABLE_ROBOT_CONTRACT
+  - id: F5
+    name: ASAP
+    url: https://github.com/LeCAR-Lab/ASAP.git
+    commit: df5320cc47dd8cad97961bdfabfe402dd62ad999
+    status: AUDIT_ONLY_CONTRACT_MISMATCH
+  - id: F6
+    name: rdk_LeRobot_tools
+    url: https://github.com/D-Robotics/rdk_LeRobot_tools.git
+    branch: stable
+    commit: 326ea043be204de25223d95c7d918efe8672dc66
+    license: Apache-2.0
+    license_blob_sha1: 261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64
+    status: REFERENCE_ONLY_DATASET_REQUIRED
+  - id: F7
+    name: WBC-AGILE
+    url: https://github.com/nvidia-isaac/WBC-AGILE.git
+    commit: 408a27cdfc204cdeb5b342f2b737e770ebda63ca
+    license: "Apache-2.0 and BSD-3-Clause"
+    status: TRAINING_PC_ONLY_PENDING_ROBOT_CONTRACT
+
+deployed_d4:
+  repository: rdk_model_zoo
+  models: [yolo26_detect, bytetrack, depth_anything_v2, pointnet_part_segmentation]
+  official_smoke_required: 4
+  official_smoke_passed: 4
+
+notes:
+  - A blocked or reference-only candidate is not counted as deployed.
+  - Repository licenses do not automatically license every third-party dataset or weight.
+  - D3 S100 BPU policies remain the offline RL/control baseline until the Roboto contract and a compatible checkpoint exist.

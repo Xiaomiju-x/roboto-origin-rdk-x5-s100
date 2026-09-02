@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-29T09:07:19+08:00",
+  "scope": "X5 laptop/board offline upgrade aggregation; no robot or peripherals",
+  "official_baseline": {
+    "overall": "PASS",
+    "upgrade_gate_open": true
+  },
+  "upgrades": {
+    "U1_temporal_occupancy_flow": {
+      "result": "PASS",
+      "candidate_iou": 0.8774131064341076,
+      "persistence_iou": 0.15440122044088744,
+      "candidate_flow_epe": 0.175483837723732,
+      "zero_flow_epe": 1.1955679655075073,
+      "x5_median_latency_ms": 15.518255
+    },
+    "U2_trust_action_guard": {
+      "result": "PASS",
+      "candidate_faults": 5,
+      "baseline_faults": 0,
+      "clean_preserved": 0.9954849498327759
+    },
+    "U3_kiss_icp": {
+      "result": "PASS",
+      "commit": "b16835283aee62f7d5e2bdf6c1c3bb2930de74ff",
+      "fixture_points": 4060,
+      "stationary_drift_m": 0.0,
+      "known_motion_expected_final_x_m": 1.36,
+      "known_motion_final_x_error_m": 7.994669370958718e-08,
+      "known_motion_x_rmse_m": 4.745098086135244e-08,
+      "official_fast_lio_stationary_drift_m": 0.0031112880517644207,
+      "comparison_note": "Same XYZ fixture; ROS message schemas and estimator inputs differ, so drift values are diagnostic rather than a ranking."
+    }
+  },
+  "checks": {
+    "official_o0_o6_pass": true,
+    "official_s100_gate_was_closed": true,
+    "u1_host_temporal_pass": true,
+    "u1_x5_temporal_pass": true,
+    "u1_model_hash_matches": true,
+    "u1_vector_hash_matches": true,
+    "u1_project_sources_match": true,
+    "u2_host_guard_pass": true,
+    "u2_x5_guard_pass": true,
+    "u2_host_x5_events_identical": true,
+    "u2_host_x5_metrics_identical": true,
+    "u2_project_source_matches_host_x5": true,
+    "u3_build_pass": true,
+    "u3_exact_source_and_clean": true,
+    "u3_kiss_run_pass": true,
+    "u3_known_motion_pass": true,
+    "u3_static_motion_fixture_matches": true,
+    "u3_same_fast_lio_fixture": true,
+    "u3_fast_lio_reference_pass": true,
+    "u3_clean_shutdown": true,
+    "u3_motion_clean_shutdown": true,
+    "u3_final_safety_pass": true,
+    "u3_motion_final_safety_pass": true,
+    "x5_runtime_can_stayed_down": true,
+    "x5_runtime_services_and_residuals_safe": true
+  },
+  "overall": "PASS",
+  "x5_upgrade_gate_complete": true,
+  "s100_gate_open": true,
+  "evidence": [
+    {
+      "path": "evidence/host/official_offline_summary_latest.json",
+      "sha256": "d94f0e47c558dff54b64e00e424e5b0af8c1e4319702fcce852074ffaffc7dcf"
+    },
+    {
+      "path": "evidence/host/upgrade/temporal_20260829T084016+0800/result.json",
+      "sha256": "53ecfe84a3e79dd6d9d4e3d4d48cd005c2eede07e83d0fbcb62c1c1f8f04dc85"
+    },
+    {
+      "path": "evidence/host/upgrade/trust_20260829T083712+0800.json",
+      "sha256": "93bfb064afe964fb7ba99bf72b8b8fbad082680a46eb890d968cc6d311501437"
+    },
+    {
+      "path": "evidence/x5/upgrade/runtime/2026-08-29T08-44-32-08-00/temporal_onnx.json",
+      "sha256": "062605b7660fa0f478321cfc4ec4db96213e463c2ecb6ddeda0fe20548733593"
+    },
+    {
+      "path": "evidence/x5/upgrade/runtime/2026-08-29T08-44-32-08-00/trust_guard.json",
+      "sha256": "7916218695958b1a70982c2160711ec03664e01238afadc5de928d44f6ac915b"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp_build_receipt.json",
+      "sha256": "3ef15c208c35b5561578b81a9d806241bafa6c823e7d95dc172d8cac95db6e04"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp/2026-08-29T09-03-54-08-00/result.json",
+      "sha256": "f115aa1f75360b9cffdb40f1cd3512c7447eef0cab637c7084e20e86f4af2d21"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp/2026-08-29T09-03-54-08-00/lifecycle.json",
+      "sha256": "de497ad83c18921c31cd3b9265dbca1366674f126d35efc6c917141e712054a2"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp/2026-08-29T09-03-54-08-00/safety_after.json",
+      "sha256": "1e90479614796a3bd9fd5024e9bd24f0aa0762b53e214acb167574729a61f8bf"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp_motion/2026-08-29T09-04-14-08-00/result.json",
+      "sha256": "2ec4ca2d5dfe4166744e7305eba595be4bd3055f51af839698b005f0ab15092d"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp_motion/2026-08-29T09-04-14-08-00/lifecycle.json",
+      "sha256": "de497ad83c18921c31cd3b9265dbca1366674f126d35efc6c917141e712054a2"
+    },
+    {
+      "path": "evidence/x5/upgrade/kiss_icp_motion/2026-08-29T09-04-14-08-00/safety_after.json",
+      "sha256": "1e90479614796a3bd9fd5024e9bd24f0aa0762b53e214acb167574729a61f8bf"
+    },
+    {
+      "path": "evidence/x5/upgrade/localization_fixture_comparison.json",
+      "sha256": "5d200443f0e4d062854d553d5499fe2fe7efbf7f897602b41d7343533f7c973f"
+    },
+    {
+      "path": "evidence/x5/localization_synthetic/2026-08-29T02-00-12+08-00/result.json",
+      "sha256": "b4a2201f3e0f5f10a3c53edcdf557957df760c230e849894a20f876ca2db9862"
+    }
+  ]
+}

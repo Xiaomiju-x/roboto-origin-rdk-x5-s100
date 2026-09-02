@@ -1,0 +1,58 @@
+--- a/src/camera/CMakeLists.txt
++++ b/src/camera/CMakeLists.txt
+@@ -4,7 +4,10 @@
+ cmake_minimum_required(VERSION 3.16)
+ project(camera)
+
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native")
+-set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
++find_program(CCACHE_PROGRAM ccache)
++if(CCACHE_PROGRAM)
++  set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
++endif()
+
+ set(THREADS_PREFER_PTHREAD_FLAG ON)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+--- a/src/imu/CMakeLists.txt
++++ b/src/imu/CMakeLists.txt
+@@ -10,7 +10,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+ if(NOT CMAKE_CROSSCOMPILING)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
+ endif()
+-set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
++find_program(CCACHE_PROGRAM ccache)
++if(CCACHE_PROGRAM)
++    set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
++endif()
+
+ set(THREADS_PREFER_PTHREAD_FLAG ON)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+--- a/src/inference/CMakeLists.txt
++++ b/src/inference/CMakeLists.txt
+@@ -4,7 +4,10 @@
+ cmake_minimum_required(VERSION 3.16)
+ project(roboparty_inference)
+
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native")
+-set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
++find_program(CCACHE_PROGRAM ccache)
++if(CCACHE_PROGRAM)
++  set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
++endif()
+
+ set(THREADS_PREFER_PTHREAD_FLAG ON)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+--- a/src/motors/CMakeLists.txt
++++ b/src/motors/CMakeLists.txt
+@@ -10,7 +10,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+ if(NOT CMAKE_CROSSCOMPILING)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
+ endif()
+-set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
++find_program(CCACHE_PROGRAM ccache)
++if(CCACHE_PROGRAM)
++    set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
++endif()
+
+ set(THREADS_PREFER_PTHREAD_FLAG ON)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

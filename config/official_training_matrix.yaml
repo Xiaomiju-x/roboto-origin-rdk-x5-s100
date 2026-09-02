@@ -1,0 +1,140 @@
+schema_version: 1
+observed_at: "2026-08-28"
+scope: >-
+  Official RoboParty algorithm reproduction on the laptop and offline X5 only.
+  No robot, motor, CAN, camera, lidar, IMU, or other peripheral is required or
+  authorized by this matrix.
+
+source:
+  roboparty_train_commit: "92008a6317d6d0efe8b58abc2fb3c630c75992c0"
+  robolab_commit: "6b1c3d9988497c8961dcba77892de32edc1770e1"
+  rsl_rl_commit: "6986d4d1b9fbab96fb61d51f07de419bc95432f1"
+  isaac_sim: "5.1.0"
+  isaac_lab: "v2.3.2"
+  python: "3.11"
+  pytorch: "2.7.0+cu128"
+
+host_limits:
+  gpu: "NVIDIA GeForce RTX 4050 Laptop GPU"
+  gpu_memory_mib: 6141
+  system_memory_gib: 16
+  policy: >-
+    Start at one environment and increase only after measuring memory.  The
+    official 4096/8192-environment defaults are recorded for fidelity but are
+    not safe assumptions on this host.
+
+tasks:
+  - task: RPO-Flat
+    family: locomotion
+    workflow: direct
+    default_num_envs: 4096
+    max_iterations: 9001
+    save_interval: 1000
+    experiment_name: rpo_flat
+    deployment_models: [policy.onnx]
+    sim2sim_script: sim2sim_rpo.py
+  - task: RPO-Rough
+    family: locomotion
+    workflow: direct
+    default_num_envs: 4096
+    max_iterations: 9001
+    save_interval: 1000
+    experiment_name: rpo_rough
+    deployment_models: [policy.onnx]
+    sim2sim_script: sim2sim_rpo.py
+  - task: RPO-AMP
+    play_task: RPO-AMP-Play
+    family: adversarial_motion_prior
+    workflow: manager_based
+    default_num_envs: 8192
+    max_iterations: 5000
+    save_interval: 100
+    experiment_name: rpo_amp
+    deployment_models: [policy_amp.onnx]
+    sim2sim_script: sim2sim_rpo_amp.py
+  - task: RPO-AttnEnc
+    family: exteroceptive_locomotion
+    workflow: direct
+    default_num_envs: 4096
+    max_iterations: 9001
+    save_interval: 1000
+    experiment_name: rpo_attn_enc
+    deployment_models: [policy_attn_enc.onnx]
+    sim2sim_script: sim2sim_rpo_attn_enc.py
+  - task: RPO-Interrupt
+    family: interruption_recovery
+    workflow: direct
+    default_num_envs: 4096
+    max_iterations: 9001
+    save_interval: 1000
+    experiment_name: rpo_interrupt
+    deployment_models: [policy_interrupt.onnx]
+    sim2sim_script: sim2sim_rpo_interrupt.py
+  - task: RPO-BeyondMimic
+    family: motion_tracking
+    workflow: manager_based
+    default_num_envs: 4096
+    max_iterations: 15000
+    save_interval: 200
+    experiment_name: rpo_beyondmimic
+    deployment_models: [policy_wave.onnx, policy_dance0.onnx, policy_dance1.onnx]
+    sim2sim_script: sim2sim_rpo_bm.py
+  - task: RPO-Getup-Mimic
+    family: getup_recovery
+    workflow: manager_based
+    default_num_envs: 4096
+    max_iterations: 30000
+    save_interval: 200
+    experiment_name: rpo_getup_mimic
+    deployment_models: [policy_getup.onnx]
+    sim2sim_script: sim2sim_rpo_bm.py
+  - task: RPO-Parkour
+    play_task: RPO-Parkour-Play
+    family: depth_conditioned_parkour
+    workflow: manager_based
+    default_num_envs: 4096
+    play_num_envs: 10
+    max_iterations: 30000
+    save_interval: 500
+    experiment_name: rpo_parkour
+    deployment_models: [encoder.onnx, policy_parkour.onnx]
+    sim2sim_script: sim2sim_rpo_parkour.py
+
+acceptance_gates:
+  - id: O0
+    name: source_and_contract
+    pass: >-
+      Source pins, task registry, robot asset, observation/action contract, and
+      deployment model hashes are machine-readable and internally audited.
+  - id: O1
+    name: environment_import
+    pass: >-
+      Isaac Sim, Isaac Lab, RoboLab, project RSL-RL, MuJoCo, CUDA PyTorch, and
+      ONNX Runtime import from the isolated environment with exact versions.
+  - id: O2
+    name: simulation_reset_step
+    pass: >-
+      Each training task creates with one environment, resets, and advances a
+      bounded number of simulation steps without NaN/Inf or process crash.
+  - id: O3
+    name: training_smoke
+    pass: >-
+      Each task completes at least one deterministic learning iteration and
+      writes a non-empty checkpoint plus resolved configuration.
+  - id: O4
+    name: export
+    pass: >-
+      A produced checkpoint can be loaded and exported through the applicable
+      official JIT/ONNX path; model inputs and outputs pass contract checks.
+  - id: O5
+    name: finite_sim2sim
+    pass: >-
+      The applicable official or project-owned finite wrapper runs the official
+      robot MJCF and policy for a bounded interval and records stability metrics.
+  - id: O6
+    name: x5_offline_deployment
+    pass: >-
+      Project-staged artifacts execute offline on X5, with timing and numerical
+      comparison evidence, while CAN remains DOWN and no device nodes start.
+
+status_values: [PASS, FAIL, BLOCKED, NOT_RUN]
