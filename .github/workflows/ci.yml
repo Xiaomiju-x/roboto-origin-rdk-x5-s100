@@ -29,11 +29,15 @@ jobs:
         run: python -m pytest
 
       - name: Python syntax
-        run: python -m compileall -q src probes scripts tests
+        run: python -m compileall -q src probes scripts tests apps/s600_coprocessor
+
+      - name: S600 native output contracts (no hardware)
+        working-directory: apps/s600_coprocessor
+        run: python -m unittest -v test_native_contract
 
       - name: Ruff
         run: >-
-          ruff check src tests scripts/ci
+          ruff check src tests scripts/ci apps/s600_coprocessor
           probes/yolo_shadow_adapter.py
           scripts/board/run_x5_yolo_shadow.py
           scripts/board/run_s_series_yolo11_shadow.py

@@ -10,7 +10,7 @@
 
 > **项目背景：本项目是地瓜机器人（D-Robotics）公司的正式项目，由公司领导牵头推进；本仓库维护者以实习生身份负责其中相关算法研发、离线部署与验证工作。**
 
-> 当前准确状态：**X5 离线基线与 U1–U3、S100 D0–D6 单板离线部署门已通过；新增 YOLO 视觉 shadow 链已依次在 X5、S100、S600 的真实 BPU 上通过。真实机器人、传感器、CAN、电机、导航和行走尚未验证。**
+> 2026-09-30最新：**团队已验证X5官方行走/舞蹈基础；本项目新增S600外挂算法演示，真实三传感器采集、YOLO11x-Seg、Qwen3-VL-2B和Whisper-medium BPU推理已运行，RTX5090完成浮点/ONNX校验。尚未验收几何融合、现场语音准确率或自主导航，不发送机器人动作。** [S600源码与复现](apps/s600_coprocessor/README.md)。以下早期离线阶段记录保留追溯。
 
 [English](README.en.md) · [结果总览](docs/RESULTS.md) · [复现指南](docs/REPRODUCIBILITY.md) · [安全边界](docs/SAFETY.md) · [路线图](docs/ROADMAP.md)
 
@@ -37,7 +37,7 @@
 | S100 D0–D6 单板离线部署 | PASS | 9 个官方模型 BPU PASS、1 个明确 CPU fallback、0 FAIL；4/4 官方视觉 smoke；30 分钟压力；洁净重建 |
 | S100 U1 Nash-e BPU A/B | PASS | 128 组、3 输出；平均 cosine 0.999807；BPU p50 0.807 ms |
 | YOLO 视觉 shadow：X5→S100→S600 | FUNCTIONAL PASS | X5 原生基线 3/3；S100/S600 YOLO11n 各 10/10；同为 5 检测与 `STOP_CANDIDATE`，严格分数一致性未通过 |
-| 真实萝博头硬件 HW0–HW5 | NOT STARTED | 未接相机、雷达、IMU、CAN、串口、电机或执行器 |
+| X5运动底座 + S600外挂 | ALGORITHM PROTOTYPE | 团队已有X5动作；S600三传感器与现代BPU模型已运行，几何导航与现场语音准确率待验 |
 
 完整指标与边界见 [docs/RESULTS.md](docs/RESULTS.md)，S600 迁移过程见 [docs/S600_YOLO11_MIGRATION.md](docs/S600_YOLO11_MIGRATION.md)，脱敏机器摘要见 [evidence/summaries](evidence/summaries)。
 

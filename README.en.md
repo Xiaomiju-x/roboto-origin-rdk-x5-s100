@@ -4,7 +4,7 @@ An evidence-driven engineering repository for reproducing the public Roboto Orig
 
 > **Project context: this is a formal D-Robotics company project led by company leadership. The repository maintainer contributes as an intern responsible for the relevant algorithm development, offline deployment, and validation work.**
 
-> Exact status: **the X5 offline baseline and U1–U3 upgrades pass; the S100 D0–D6 gate passes; a file-only YOLO shadow pipeline passes in order on real X5, S100, and S600 BPUs. The physical robot, sensors, CAN, motors, navigation, and locomotion remain unvalidated.**
+> Update, 2026-09-30: **the team has verified official X5 walking/dance routines. The new S600 coprocessor prototype runs real three-sensor acquisition, YOLO11x-Seg, Qwen3-VL-2B and Whisper-medium on the BPU, with RTX5090 float/ONNX verification. Geometric fusion, live speech accuracy and autonomous navigation remain unaccepted; this application sends no motion commands.** [Source and reproduction](apps/s600_coprocessor/README.md). Older offline results below retain their original scope.
 
 [中文](README.md) · [Results](docs/RESULTS.md) · [Reproduction](docs/REPRODUCIBILITY.md) · [Safety](docs/SAFETY.md) · [Roadmap](docs/ROADMAP.md)
 
@@ -30,7 +30,7 @@ An evidence-driven engineering repository for reproducing the public Roboto Orig
 | S100 D0–D6 offline deployment | PASS | 9 BPU PASS, 1 explicit CPU fallback, 0 FAIL; 4/4 official vision smoke; 30-minute stress; clean rebuild |
 | S100 U1 Nash-e BPU A/B | PASS | 128 fixtures; mean cosine 0.999807; BPU p50 0.807 ms |
 | YOLO shadow migration: X5→S100→S600 | FUNCTIONAL PASS | X5 native baseline 3/3; S100/S600 YOLO11n 10/10 each; five detections and the same file-only event; strict score parity fails |
-| Physical robot HW0–HW5 | NOT STARTED | No camera, lidar, IMU, CAN, serial, motor, or actuator was connected |
+| X5 motion base + S600 coprocessor | ALGORITHM PROTOTYPE | Team-verified X5 routines; live sensors and modern S600 BPU models; geometry and live speech accuracy pending |
 
 See [docs/RESULTS.md](docs/RESULTS.md) for the complete claim boundaries and [docs/S600_YOLO11_MIGRATION.md](docs/S600_YOLO11_MIGRATION.md) for the migration record.
 

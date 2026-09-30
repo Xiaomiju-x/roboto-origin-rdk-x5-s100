@@ -18,6 +18,7 @@ TEXT_SUFFIXES = {
     ".cpp",
     ".in",
     ".json",
+    ".html",
     ".lock",
     ".md",
     ".patch",

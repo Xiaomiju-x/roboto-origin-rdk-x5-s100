@@ -1,0 +1,9 @@
+{
+  "model_dir": "models_whisper_ram/",
+  "encode_model_file": "whisper-medium_audio_encode_duration_30s_sr_16k_w8_nash-p_corenum_4.hbm",
+  "decode_model_file": "whisper-medium_audio_decode_w8_nash-p_corenum_1_1.hbm",
+  "encode_bpu_core": [0, 1, 2, 3],
+  "decode_bpu_core": [0],
+  "vocabulary_path": "runtime_compact/Whisper_Medium_config/",
+  "language": "zh"
+}
